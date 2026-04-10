@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import AdminLayout from "@/components/AdminLayout";
 import { useEffect, useState } from "react";
 import { Policial, Viagem, Sobreaviso, AuditLog } from "@/types";

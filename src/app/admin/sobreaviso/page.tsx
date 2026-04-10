@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import AdminLayout from "@/components/AdminLayout";
 import { useEffect, useState, useMemo } from "react";
 import { 

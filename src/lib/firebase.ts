@@ -1,6 +1,6 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
+import { initializeApp, getApps, getApp, FirebaseApp } from 'firebase/app';
+import { getFirestore, Firestore } from 'firebase/firestore';
+import { getAuth, Auth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,9 +11,29 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase (prevent double-init in dev/HMR)
-const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+// Fail-safe check for build-time or missing configuration
+const isConfigValid = 
+  firebaseConfig.apiKey && 
+  firebaseConfig.apiKey !== 'your_api_key' && 
+  !firebaseConfig.apiKey.includes('PLACEHOLDER');
 
-export const db = getFirestore(app);
-export const auth = getAuth(app);
+let app: FirebaseApp | undefined;
+let db: Firestore | any = null;
+let auth: Auth | any = null;
+
+if (isConfigValid) {
+  try {
+    app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
+    db = getFirestore(app);
+    auth = getAuth(app);
+  } catch (error) {
+    console.error("Firebase initialization failed:", error);
+  }
+} else {
+  if (typeof window === 'undefined') {
+    console.warn("⚠️ Firebase: Running in build mode or with placeholder keys. Firestore/Auth will be unavailable.");
+  }
+}
+
+export { db, auth };
 export default app;
