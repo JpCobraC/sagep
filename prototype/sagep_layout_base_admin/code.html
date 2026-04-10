@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAGEP | Operational Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#2e3543",
+                        "background": "#0c1321",
+                        "on-secondary-container": "#6d5000",
+                        "error-container": "#93000a",
+                        "on-primary": "#002a78",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "inverse-surface": "#dce2f5",
+                        "inverse-on-surface": "#29303f",
+                        "on-background": "#dce2f5",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#434655",
+                        "on-surface-variant": "#c3c6d7",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#b4c5ff",
+                        "surface-bright": "#323948",
+                        "surface-container-highest": "#2e3543",
+                        "on-surface": "#dce2f5",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#070e1b",
+                        "surface-container-low": "#141c29",
+                        "on-tertiary-container": "#c1ffc5",
+                        "surface-container": "#19202d",
+                        "tertiary-fixed": "#6bff8f",
+                        "surface-container-high": "#232a38",
+                        "secondary-fixed": "#ffdfa0",
+                        "surface": "#0c1321",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#fbbc00",
+                        "on-secondary-fixed": "#261a00",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-primary": "#0053db",
+                        "primary": "#b4c5ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#8d90a0",
+                        "on-secondary-fixed-variant": "#5c4300",
+                        "tertiary-container": "#007e37",
+                        "on-tertiary": "#003915",
+                        "tertiary": "#4ae176",
+                        "on-error": "#690005",
+                        "secondary-container": "#ffbf00",
+                        "secondary": "#ffe2ab",
+                        "on-secondary": "#402d00",
+                        "surface-dim": "#0c1321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .JetBrains_Mono_for_data {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary/30 antialiased overflow-hidden">
+<aside class="flex flex-col h-full border-r border-white/5 bg-[#0c1321] h-screen w-64 fixed left-0 top-0 shadow-[20px_0_50px_rgba(0,0,0,0.3)] z-50 font-['Inter'] font-medium tracking-tight JetBrains_Mono_for_data">
+<div class="px-6 py-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center shadow-lg shadow-primary-container/20 overflow-hidden">
+<img alt="Agency Command Seal" class="w-6 h-6 invert" data-alt="high contrast minimalist geometric heraldic crest for a tactical government agency with sharp blue accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzHbL1F0ZpHYSP9gJ0OXqWzzFYviVQ_aCMLPfMm8FWzRBgn610IBsx9rIggLhOMp7kYdmJ2NrZ5z7ws16qJ9h6b1PMhMT41AKIHJgYXLHhXHdzIco90oF1h7x6P4HYPLPLHWpP42Ld14zESkgfoge6HI8bGE0sMOWpot4yxmyhNxTBtWBgshHVyBLqUr09yEmGhEAarSZfJlPuX_JjB50LuyyJ0ooIP323_qyrq6opTIMvlQkx8CiRT5cNdtzBAnAbqCulnOPWWJoc"/>
+</div>
+<div>
+<h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">SAGEP</h1>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Operational Command</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full py-3 px-4 bg-primary-container text-on-primary-container rounded-xl flex items-center justify-center gap-2 font-bold text-sm shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                New Deployment
+            </button>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-blue-400 border-l-4 border-blue-600 bg-blue-600/10" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="text-sm">Personnel</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-sm">Schedules</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="text-sm">Tactical Units</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="text-sm">Incident Logs</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-sm">Reports</span>
+</a>
+</nav>
+<div class="px-3 pb-8 space-y-1 border-t border-white/5 pt-6">
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-red-400 hover:bg-red-400/5" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#19202d]/40 backdrop-blur-xl flex justify-between items-center px-8 h-16 font-['Inter'] text-sm">
+<div class="flex items-center gap-6 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-[18px]">search</span>
+<input class="w-full bg-[#070e1b] border-none rounded-lg pl-10 pr-4 py-2 text-on-surface placeholder:text-slate-500 focus:ring-1 focus:ring-primary/50 text-xs transition-all" placeholder="Search operational database..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 ml-6">
+<button class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-blue-400 transition-colors hover:bg-white/5 rounded-full relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border-2 border-[#19202d]"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-slate-300 hover:text-blue-400 transition-colors hover:bg-white/5 rounded-full">
+<span class="material-symbols-outlined" data-icon="g_translate">g_translate</span>
+</button>
+<div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+<button class="flex items-center gap-3 pl-2 pr-1 py-1 hover:bg-white/5 rounded-full transition-all group">
+<div class="text-right">
+<p class="text-[12px] font-bold text-white leading-none">Cmdr. Sterling</p>
+<p class="text-[10px] text-slate-500 font-mono leading-none mt-1">ID: 9920-X</p>
+</div>
+<div class="w-9 h-9 rounded-full bg-surface-container-highest border border-white/10 flex items-center justify-center overflow-hidden group-hover:border-primary/50 transition-colors">
+<span class="material-symbols-outlined text-slate-400" data-icon="account_circle">account_circle</span>
+</div>
+</button>
+</div>
+</header>
+<main class="ml-64 pt-16 min-h-screen p-8 bg-background relative overflow-y-auto">
+<div class="max-w-7xl mx-auto space-y-8">
+<header class="flex justify-between items-end">
+<div class="space-y-1">
+<h2 class="text-3xl font-black tracking-tight text-white headline-md">Dashboard <span class="text-primary font-mono text-lg opacity-50 ml-2">/ 09:41 UTC</span></h2>
+<p class="text-slate-400 text-sm max-w-lg">Operational overview of current assets, ongoing incidents, and personnel readiness status.</p>
+</div>
+<div class="flex gap-3">
+<div class="px-4 py-2 bg-surface-container rounded-lg border border-white/5 flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_8px_rgba(74,225,118,0.5)]"></div>
+<span class="text-[10px] font-bold text-slate-300 uppercase tracking-widest">Network Secure</span>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-6">
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="grid grid-cols-3 gap-4">
+<div class="bg-surface-container rounded-xl p-5 border-l-2 border-primary shadow-sm hover:surface-container-high transition-colors">
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-1">Active Incidents</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-white JetBrains_Mono_for_data">12</span>
+<span class="text-xs text-error font-mono">-2.4%</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 border-l-2 border-tertiary shadow-sm">
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-1">Personnel Active</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-white JetBrains_Mono_for_data">142</span>
+<span class="text-xs text-tertiary font-mono">98%</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-5 border-l-2 border-secondary shadow-sm">
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest mb-1">Fleet Ready</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-black text-white JetBrains_Mono_for_data">08</span>
+<span class="text-xs text-secondary font-mono">Alert</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container rounded-2xl overflow-hidden aspect-video relative group border border-white/5 shadow-2xl">
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10"></div>
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="high-tech surveillance map interface with glowing blue grid lines, digital data overlays, and satellite imagery of a city at night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6zpWOrCf47misJ4_dI9WpumiyIEhzI12bXieakpunvvDlfjGoYXk_o5WojPJRVkDLK3v_nRaklVDwiXU_hjvIyZe9n8M5NdkofyBwDRa3dPNFKlOaBx8vVvryVlBY2vLlyZLJo4bPn_D_VG8VrCKOhE1L6HgPPaLcR5sGVGMXDqsdu8YzP3Lm6tn-f2OqbPoSaOtGrNDoh-MJs2-FY2ik9sceUq1iIGB7jg2KHwK4HAcrZlEXgSRScNj_AcpXSJ5unHq9Oxm12NkT"/>
+<div class="absolute top-6 left-6 z-20 flex items-center gap-3">
+<span class="bg-red-500/20 text-red-400 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter border border-red-500/30 flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span>
+                                Live Feed: Sector 7
+                            </span>
+<span class="bg-white/10 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter border border-white/10">
+                                41.40338, 2.17403
+                            </span>
+</div>
+<div class="absolute bottom-6 left-6 right-6 z-20 flex justify-between items-end">
+<div class="space-y-1">
+<h3 class="text-xl font-bold text-white tracking-tight">Active Deployment Zone</h3>
+<p class="text-slate-300 text-xs">Tactical Response Team Charlie on-site since 08:22</p>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<div class="bg-surface-container rounded-2xl p-6 border border-white/5 h-full flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-sm font-bold text-white uppercase tracking-widest">Recent Logs</h3>
+<button class="text-xs text-primary font-bold hover:underline">View All</button>
+</div>
+<div class="flex-1 space-y-4">
+<div class="group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">09:34:12</span>
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded text-[8px] font-black uppercase">Low Priority</span>
+</div>
+<div class="p-3 bg-surface-container-low rounded-xl group-hover:bg-surface-container-high transition-colors">
+<p class="text-xs text-on-surface line-clamp-2">Standard perimeter sweep completed at Sector 4. No anomalies detected by unit ALPHA-2.</p>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">09:12:45</span>
+<span class="bg-red-500/10 text-red-400 px-2 py-0.5 rounded text-[8px] font-black uppercase">Critical</span>
+</div>
+<div class="p-3 bg-surface-container-low rounded-xl group-hover:bg-surface-container-high transition-colors border-l-2 border-red-500/50">
+<p class="text-xs text-on-surface line-clamp-2">Unidentified signal detected near substation 42B. Deploying recon drone DR-09.</p>
+</div>
+</div>
+<div class="group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-mono text-slate-500">08:55:01</span>
+<span class="bg-tertiary/10 text-tertiary px-2 py-0.5 rounded text-[8px] font-black uppercase">Resolved</span>
+</div>
+<div class="p-3 bg-surface-container-low rounded-xl group-hover:bg-surface-container-high transition-colors border-l-2 border-tertiary/50">
+<p class="text-xs text-on-surface line-clamp-2">System maintenance on primary firewall finished. 100% data integrity verified.</p>
+</div>
+</div>
+</div>
+<div class="mt-8 p-4 bg-surface-container-lowest rounded-xl border border-white/5">
+<div class="flex items-center gap-4 mb-4">
+<div class="w-12 h-12 rounded-full border-4 border-primary/20 border-t-primary flex items-center justify-center">
+<span class="text-[10px] font-bold text-white">82%</span>
+</div>
+<div>
+<p class="text-xs font-bold text-white">Command Integrity</p>
+<p class="text-[10px] text-slate-500">Stable - 2 active alerts</p>
+</div>
+</div>
+<button class="w-full py-2 bg-surface-container-high hover:bg-surface-container-highest text-white text-[10px] font-bold uppercase tracking-widest rounded-lg transition-colors">
+                                Run System Diagnostics
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="md:hidden flex justify-around items-center px-6 pb-4 pt-2 fixed bottom-0 w-full z-50 rounded-t-2xl bg-[#0c1321]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-500/10 rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Shifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="shield">shield</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Duty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="notifications_active">notifications_active</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Alerts</span>
+</a>
+</nav>
+</body></html>

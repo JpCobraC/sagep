@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SAGEP | Operational Command Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .JetBrains_Mono_for_data {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#2e3543",
+                    "background": "#0c1321",
+                    "on-secondary-container": "#6d5000",
+                    "error-container": "#93000a",
+                    "on-primary": "#002a78",
+                    "on-tertiary-fixed-variant": "#005321",
+                    "inverse-surface": "#dce2f5",
+                    "inverse-on-surface": "#29303f",
+                    "on-background": "#dce2f5",
+                    "on-tertiary-fixed": "#002109",
+                    "on-primary-container": "#eeefff",
+                    "outline-variant": "#434655",
+                    "on-surface-variant": "#c3c6d7",
+                    "primary-container": "#2563eb",
+                    "on-error-container": "#ffdad6",
+                    "surface-tint": "#b4c5ff",
+                    "surface-bright": "#323948",
+                    "surface-container-highest": "#2e3543",
+                    "on-surface": "#dce2f5",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#070e1b",
+                    "surface-container-low": "#141c29",
+                    "on-tertiary-container": "#c1ffc5",
+                    "surface-container": "#19202d",
+                    "tertiary-fixed": "#6bff8f",
+                    "surface-container-high": "#232a38",
+                    "secondary-fixed": "#ffdfa0",
+                    "surface": "#0c1321",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "secondary-fixed-dim": "#fbbc00",
+                    "on-secondary-fixed": "#261a00",
+                    "tertiary-fixed-dim": "#4ae176",
+                    "on-primary-fixed": "#00174b",
+                    "inverse-primary": "#0053db",
+                    "primary": "#b4c5ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline": "#8d90a0",
+                    "on-secondary-fixed-variant": "#5c4300",
+                    "tertiary-container": "#007e37",
+                    "on-tertiary": "#003915",
+                    "tertiary": "#4ae176",
+                    "on-error": "#690005",
+                    "secondary-container": "#ffbf00",
+                    "secondary": "#ffe2ab",
+                    "on-secondary": "#402d00",
+                    "surface-dim": "#0c1321"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden">
+<!-- SideNavBar Integration -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#0c1321] flex flex-col h-full border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.3)] z-50 hidden md:flex">
+<div class="p-6 flex flex-col gap-1">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center bg-surface-container-highest">
+<img alt="Agency Command Seal" class="w-8 h-8" data-alt="minimalist geometric eagle emblem in blue and silver, tactical police agency insignia style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnFl88h91KZAfk1q4nKQKinAo8RMVmAl9l37PHibp1r6i-idHKpWf7RXsFTmOU83V1N2MNRW3Sb0dCJjU3VNv0LMQ4zqiH8w1pZWK6azJnG5CiA-fKcPl6PpyO4Lk5r5taJZ5Uh2YopOnq7-NRPe46rr2N6HxzaoIbWNqtZwm3b3e95OmkHvsLmRTbxDATxOvnNcTuofzTGZKkiJd-wtM8FJLhFxu-VjyBnkmqMshXpdc_HINFTXNnfnWe834SszXIp77kZJXgWmNS"/>
+</div>
+<div>
+<h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">SAGEP</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Operational Command</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-blue-400 border-l-4 border-blue-600 bg-blue-600/10 Active:translate-x-1" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="font-['Inter'] font-medium tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span class="font-['Inter'] font-medium tracking-tight">Personnel</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined text-lg">calendar_month</span>
+<span class="font-['Inter'] font-medium tracking-tight">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined text-lg">security</span>
+<span class="font-['Inter'] font-medium tracking-tight">Tactical Units</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined text-lg">assignment</span>
+<span class="font-['Inter'] font-medium tracking-tight">Incident Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-slate-400 hover:text-slate-200 hover:bg-[#19202d]" href="#">
+<span class="material-symbols-outlined text-lg">analytics</span>
+<span class="font-['Inter'] font-medium tracking-tight">Reports</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-white/5 pt-4">
+<button class="w-full mb-6 py-3 px-4 bg-primary-container text-on-primary-container rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined">add</span>
+                    New Deployment
+                </button>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200 rounded-xl mb-1" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="font-['Inter'] font-medium tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200 rounded-xl" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span class="font-['Inter'] font-medium tracking-tight">Logout</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- TopNavBar Integration -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] z-40 bg-[#19202d]/40 backdrop-blur-xl flex justify-between items-center px-8 h-16 font-['Inter'] text-sm">
+<div class="flex items-center gap-4 flex-1">
+<div class="bg-surface-container-lowest/50 rounded-full px-4 py-1.5 flex items-center gap-3 w-full max-w-md group border border-white/5 focus-within:border-primary/50 transition-all">
+<span class="material-symbols-outlined text-slate-500 text-lg">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm text-on-surface w-full" placeholder="Search operational database..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-slate-300 hover:text-blue-400 transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-300 hover:text-blue-400 transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined">g_translate</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-white/10"></div>
+<div class="flex items-center gap-3">
+<span class="text-right hidden sm:block">
+<p class="text-xs font-bold text-white">Chief Command</p>
+<p class="text-[10px] text-slate-500 JetBrains_Mono_for_data">UID: 442-TX</p>
+</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border-2 border-primary/20 p-0.5">
+<img alt="User Avatar" class="rounded-full w-full h-full object-cover" data-alt="professional portrait of a high-ranking police chief in uniform, authoritative look, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8hvtqwPHNobdGO2_al8t9LVnTIOiGkKvlaGgiAyEIiG2ileJEn1XehwHwPZ_KO5FxpS-xFEIsLmzUEvGuq3TtYFI3t03oFxfFhAZDCOHfCUcXL0TR0DCaie00-Fb9ngw7uJVnWu5TLn5k_oKO2E0piWc4ITiV0XD6b0tCXVaMrGFEMHT7agnjbygGdLjYzZ5OJN-J4byCa7ryAJFz7S8Qihbs8xku5lPUhyLiajxmKZGiZesZ6jGcU6XAq2W4773hyCfShQ15Tawy"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-64 pt-24 pb-20 px-8 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+<div class="space-y-1">
+<h2 class="text-3xl font-black tracking-tighter text-white">Dashboard <span class="text-primary">Admin</span></h2>
+<div class="flex items-center gap-2 text-slate-500 JetBrains_Mono_for_data text-xs">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-tertiary"></span> SYSTEM_ONLINE</span>
+<span>//</span>
+<span>TIMESTAMP: 2023-10-27T14:42:01Z</span>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-highest border border-white/5 text-on-surface px-5 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    Tactical Filter
+                </button>
+<button class="bg-primary text-on-primary px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:shadow-[0_0_20px_rgba(180,197,255,0.3)] transition-all">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                    Export Intel
+                </button>
+</div>
+</div>
+<!-- Metrics Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Metric Card 1 -->
+<div class="bg-surface-container/60 backdrop-blur-md rounded-2xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary shadow-[2px_0_10px_rgba(37,99,235,0.4)]"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Efetivo Ativo</span>
+<span class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-lg">person_check</span>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-5xl font-black JetBrains_Mono_for_data leading-none tracking-tighter">142</span>
+<span class="text-tertiary text-sm JetBrains_Mono_for_data pb-1 flex items-center font-bold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                        +4.2%
+                    </span>
+</div>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-[10px] text-slate-500 uppercase font-bold tracking-wider">
+<span>Capacity</span>
+<span>88%</span>
+</div>
+<div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[88%]"></div>
+</div>
+</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="bg-surface-container/60 backdrop-blur-md rounded-2xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-secondary shadow-[2px_0_10px_rgba(255,191,0,0.4)]"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Viagens em Curso</span>
+<span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-lg">local_police</span>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-5xl font-black JetBrains_Mono_for_data leading-none tracking-tighter">12</span>
+<span class="text-error text-sm JetBrains_Mono_for_data pb-1 flex items-center font-bold">
+<span class="material-symbols-outlined text-[16px]">warning</span>
+                        Active
+                    </span>
+</div>
+<div class="mt-6 flex items-center gap-1">
+<div class="h-8 w-1.5 bg-secondary/20 rounded-full overflow-hidden flex flex-col justify-end flex-1">
+<div class="bg-secondary w-full h-[60%] rounded-full"></div>
+</div>
+<div class="h-8 w-1.5 bg-secondary/20 rounded-full overflow-hidden flex flex-col justify-end flex-1">
+<div class="bg-secondary w-full h-[40%] rounded-full"></div>
+</div>
+<div class="h-8 w-1.5 bg-secondary/20 rounded-full overflow-hidden flex flex-col justify-end flex-1">
+<div class="bg-secondary w-full h-[80%] rounded-full"></div>
+</div>
+<div class="h-8 w-1.5 bg-secondary/20 rounded-full overflow-hidden flex flex-col justify-end flex-1">
+<div class="bg-secondary w-full h-[30%] rounded-full"></div>
+</div>
+<div class="h-8 w-1.5 bg-secondary/20 rounded-full overflow-hidden flex flex-col justify-end flex-1">
+<div class="bg-secondary w-full h-[90%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="bg-surface-container/60 backdrop-blur-md rounded-2xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary shadow-[2px_0_10px_rgba(74,225,118,0.4)]"></div>
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-400">Sobreavisos Hoje</span>
+<span class="material-symbols-outlined text-tertiary bg-tertiary/10 p-2 rounded-lg">event_available</span>
+</div>
+<div class="flex items-end gap-3">
+<span class="text-5xl font-black JetBrains_Mono_for_data leading-none tracking-tighter">08</span>
+<span class="text-slate-500 text-[10px] uppercase font-bold tracking-tighter leading-tight max-w-[80px]">
+                        Available Reserve
+                    </span>
+</div>
+<div class="mt-6 grid grid-cols-4 gap-2">
+<div class="h-10 bg-tertiary/20 rounded-lg flex items-center justify-center text-tertiary text-[10px] font-bold">1st</div>
+<div class="h-10 bg-tertiary/20 rounded-lg flex items-center justify-center text-tertiary text-[10px] font-bold">2nd</div>
+<div class="h-10 bg-tertiary/10 rounded-lg flex items-center justify-center text-slate-500 text-[10px] font-bold">3rd</div>
+<div class="h-10 bg-tertiary/10 rounded-lg flex items-center justify-center text-slate-500 text-[10px] font-bold">4th</div>
+</div>
+</div>
+</div>
+<!-- Dashboard Body Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left: Activity & Monitoring -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Activity Feed -->
+<div class="bg-surface-container-high/40 rounded-3xl p-8 border-l border-t border-white/5 shadow-2xl">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-xl font-bold text-white tracking-tight">Recent Tactical Feed</h3>
+<p class="text-xs text-slate-500 font-medium">Real-time unit deployments and assignments</p>
+</div>
+<span class="text-primary text-[10px] font-bold JetBrains_Mono_for_data bg-primary/10 px-3 py-1 rounded-full animate-pulse">LIVE STREAM</span>
+</div>
+<div class="space-y-4">
+<!-- Feed Item 1 -->
+<div class="group bg-surface-container-low hover:bg-surface-container transition-all p-4 rounded-2xl flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<h4 class="text-sm font-bold text-slate-200">Assignment Confirmed: Convoy Alpha</h4>
+<span class="JetBrains_Mono_for_data text-[10px] text-slate-500">14:22:05</span>
+</div>
+<p class="text-xs text-slate-400">Officer <span class="text-slate-200 font-medium">Pereira, S.</span> assigned to tactical transport of sensitive documentation. Estimated arrival: 16:40.</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-surface-variant text-[10px] font-bold text-white px-2 py-0.5 rounded uppercase">Unit-7</span>
+<span class="text-primary text-[10px] font-black uppercase tracking-widest">Active</span>
+</div>
+</div>
+<!-- Feed Item 2 -->
+<div class="group bg-surface-container-low hover:bg-surface-container transition-all p-4 rounded-2xl flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<h4 class="text-sm font-bold text-slate-200">Alert: Unauthorized Shift Departure</h4>
+<span class="JetBrains_Mono_for_data text-[10px] text-slate-500">13:58:12</span>
+</div>
+<p class="text-xs text-slate-400">Personnel <span class="text-slate-200 font-medium">Macedo, R.</span> geo-fence trigger at Perimeter B. Status inquiry sent to command.</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-error-container text-[10px] font-bold text-on-error-container px-2 py-0.5 rounded uppercase">Warning</span>
+<span class="text-error text-[10px] font-black uppercase tracking-widest">Urgent</span>
+</div>
+</div>
+<!-- Feed Item 3 -->
+<div class="group bg-surface-container-low hover:bg-surface-container transition-all p-4 rounded-2xl flex items-start gap-4">
+<div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between mb-1">
+<h4 class="text-sm font-bold text-slate-200">Shift Handover Completed</h4>
+<span class="JetBrains_Mono_for_data text-[10px] text-slate-500">12:30:00</span>
+</div>
+<p class="text-xs text-slate-400">Command shift transition from Night-Duty to Day-Ops successful. No pending critical exceptions reported.</p>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="bg-surface-variant text-[10px] font-bold text-white px-2 py-0.5 rounded uppercase">Admin</span>
+<span class="text-tertiary text-[10px] font-black uppercase tracking-widest">Normal</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2.5 text-xs font-bold text-slate-500 hover:text-primary uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
+                        View Full Tactical History
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Strategic Map (Placeholder Content for Layout Balance) -->
+<div class="bg-surface-container rounded-3xl overflow-hidden h-[300px] relative">
+<img alt="Operational Area Map" class="w-full h-full object-cover opacity-20 grayscale brightness-50" data-alt="tactical topographic map of an urban area with blue and red radar heatmaps and GPS marker overlays" data-location="Brasilia" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxWrFNkve_B7kVql2qumoK0utd0Hkn6mSfBlPswjepBBxUp5h6yP3sWcXef_62oxTbGDznx2VQpZqgPfPjZv6u5uRNEnM3RquoURy8MlstO0jCXSJVXgFlrFsHraNrM32bfOcucjDdxxzR7SYRWwZmNU1FAfgvKkrK-FyZgxUkawMv0-Vl3KOgpHvE4Ry6yWSfDXV3d1ifWLWFKb2YllpFDK4oGFxcDU4AhCyqmLhOoPpqzGUmy19pCHXhr-DYgHB-h6A5bq-A8sr5"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute top-6 left-6 bg-surface-container-highest/80 backdrop-blur-md p-4 rounded-2xl border border-white/5">
+<h4 class="text-sm font-bold text-white mb-2">Live Unit Tracking</h4>
+<div class="space-y-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-[10px] font-medium text-slate-300">Patrol Delta (Zone 4)</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-[10px] font-medium text-slate-300">Escort Echo (M-20)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Performance & Rankings -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Meritocracy Ranking -->
+<div class="bg-surface-container-high rounded-3xl p-8 border-l border-t border-white/5 shadow-2xl relative">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<h3 class="text-xl font-bold text-white tracking-tight">Merit Ranking</h3>
+</div>
+<p class="text-xs text-slate-500 mb-8 font-medium">Top officers with lowest performance points (Efficiency Score).</p>
+<div class="space-y-6">
+<!-- Rank 1 -->
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Officer Avatar" class="w-12 h-12 rounded-full border-2 border-secondary/50" data-alt="professional officer profile photo, focused look, navy uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBjGyX-RbwyhLl59jDbNek7TDg-D5pq1Wxpg_dWmM6dIAUrwZpJDcP3RyNUa9-sBqyZRWZ_BtuezM_Li4IxlrPXS7XcCFaw5FawaAXiB38mA1h6XOJ_OmbCSOkySh_RSi2s4eFXOOPfsj0YyoxoF_h4xc_yiJWQpnihf37FM_Pw0hUZ7RXYhEpM-9HGKv76uOhdeLne30h2ctsVw0t2L7u7mYwiJuriW93ZcSJgyzLFv9E2yWCRSbNHUm214c0M1Fxpv-Bous2lnNr"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-secondary rounded-full flex items-center justify-center text-[10px] font-black text-on-secondary">1</div>
+</div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-white leading-tight">Maj. Carvalho, A.</h5>
+<p class="text-[10px] text-slate-500 JetBrains_Mono_for_data uppercase">Unit Bravo-9</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-black JetBrains_Mono_for_data text-tertiary">1.2</p>
+<p class="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Points</p>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Officer Avatar" class="w-12 h-12 rounded-full border-2 border-white/5" data-alt="professional officer profile photo, focused look, navy uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtXEpjz9LFj6lwXXcOaP0nhvRb3oAt129sEPitxEdpBJUyvfDnHmBMcjgYt8bJ4mwXTxjR3XOubAw3LhfOZUVpsYLTDpeToAerCbQbKbkHKVOOsTCSP29841BGB3c9IjDO_1bjhXxgFghOHMjFQCAAs4arJYGbszBarNq83y2-I5U0sGotOqdGvSg9cduFiibRQM45FQ2dUq9Af3SZekG1iNZDS-oZeY0Vl_-VPBTTE84PDP4WRJEL50_tIRzWEGcnTt5MX0Bi6Bpu"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-surface-variant rounded-full flex items-center justify-center text-[10px] font-black text-white">2</div>
+</div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-white leading-tight">Capt. Lima, F.</h5>
+<p class="text-[10px] text-slate-500 JetBrains_Mono_for_data uppercase">Direct Command</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-black JetBrains_Mono_for_data text-white">1.8</p>
+<p class="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Points</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Officer Avatar" class="w-12 h-12 rounded-full border-2 border-white/5" data-alt="professional officer profile photo, focused look, navy uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuLHW99ltfHRVXu4OUT96sTVyCUJmECM57MMHP8HphkxnHQQa1e0_FwwJTfN2_lPJBHnx24si7pnRncxfHHDS7iu5FSnnzEj1JySTclmQmvk66F5WaSghmedhQz6XUdfN6OKU60LB0lY1ifrkv-nYCdfnI5KynhGyK5ckEoouMEsLFiRdl2rr04JrATNUm1Q81vwNAAE5rGgdqEZX9UJxEusRnDcOUQie6d8Cr1akdm_eAnSr-WbDxZau9x5wOpiKn3ozuo2KY5Q85"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-surface-variant rounded-full flex items-center justify-center text-[10px] font-black text-white">3</div>
+</div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-white leading-tight">Sgt. Neves, M.</h5>
+<p class="text-[10px] text-slate-500 JetBrains_Mono_for_data uppercase">Patrol Unit-2</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-black JetBrains_Mono_for_data text-white">2.5</p>
+<p class="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Points</p>
+</div>
+</div>
+<!-- Rank 4 -->
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Officer Avatar" class="w-12 h-12 rounded-full border-2 border-white/5" data-alt="professional officer profile photo, focused look, navy uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAeGRXGy_OH2VcUivZu-LndfoJN27gD5KuBIpJZ2e5n9uPk128x43CS45bL2xl-4vhBNvx5hdKF2ru24DiOwyr9sxQQeB3hlFx67ueeHJgCSgCCVtC1qQIU8v49odmwlcA-FkmTMK8AerxoZinUvkWMLHy0ooyQa-XoFjsK00__zwrVPMBUoKoN7qGglnAx-2C_OMlfr6cWKifWrWY9RvgTiGFIiL0w4UtyerdraQ0u_y3AUPxZCdKBjGs06Py6ADjiCorVBIQ4GYL"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-surface-variant rounded-full flex items-center justify-center text-[10px] font-black text-white">4</div>
+</div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-white leading-tight">Lt. Silva, G.</h5>
+<p class="text-[10px] text-slate-500 JetBrains_Mono_for_data uppercase">Logistics Unit</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-black JetBrains_Mono_for_data text-white">3.1</p>
+<p class="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Points</p>
+</div>
+</div>
+<!-- Rank 5 -->
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Officer Avatar" class="w-12 h-12 rounded-full border-2 border-white/5" data-alt="professional officer profile photo, focused look, navy uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLCFi5yw_KKDiwhypPBauBOymT89A_gYTDFGCnutPCRrEUpzcOLHOf1Hhep8-aBJ_u3R57uA5MQf-OqH9Veb9adGQDA6yKYe9WrQE32H0yh2pK9mPSn1Dm9sqNIlfGLcZ986iwFwkFZRXLCzGj_bN6sMVOV_qhpN9tTVzwgNzlIjASOfYFKkTVQ3a7mxat5PFZNcH3Tn64CevQUBzM5IkNuTUNDMq8h86ggONwWWra2hUz5S9zN4HKl8N1d2akin_ul3LXLoXedI68"/>
+<div class="absolute -bottom-1 -right-1 w-5 h-5 bg-surface-variant rounded-full flex items-center justify-center text-[10px] font-black text-white">5</div>
+</div>
+<div class="flex-1">
+<h5 class="text-sm font-bold text-white leading-tight">Officer Rossi, J.</h5>
+<p class="text-[10px] text-slate-500 JetBrains_Mono_for_data uppercase">Aviation Group</p>
+</div>
+<div class="text-right">
+<p class="text-lg font-black JetBrains_Mono_for_data text-white">3.4</p>
+<p class="text-[8px] font-black text-slate-500 uppercase tracking-tighter">Points</p>
+</div>
+</div>
+</div>
+<div class="mt-10 p-4 rounded-2xl bg-white/5 border border-white/5">
+<div class="flex items-center gap-3 text-xs text-slate-400">
+<span class="material-symbols-outlined text-sm">info</span>
+                            Lowest points indicate peak operational compliance.
+                        </div>
+</div>
+</div>
+<!-- Deployment Capacity Summary -->
+<div class="bg-gradient-to-br from-primary-container to-blue-800 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-8 opacity-10 transform scale-150 group-hover:rotate-12 transition-transform duration-500">
+<span class="material-symbols-outlined text-9xl">analytics</span>
+</div>
+<h3 class="text-lg font-black tracking-tight mb-2 uppercase italic">Fleet Alert</h3>
+<p class="text-sm text-blue-100 font-medium mb-6">4 Tactical units reaching maintenance threshold. Scheduled service required.</p>
+<button class="w-full py-3 bg-white text-blue-900 rounded-xl font-black text-xs uppercase tracking-widest hover:bg-blue-50 transition-colors">
+                        Manage Maintenance
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Integration (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-2xl bg-[#0c1321]/80 backdrop-blur-md flex justify-around items-center px-6 pb-4 pt-2 border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-500/10 rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest">Shifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest">Duty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest">Alerts</span>
+</a>
+</nav>
+</body></html>

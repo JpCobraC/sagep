@@ -1,0 +1,11 @@
+services:
+  sagep:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sagep-app
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    restart: always

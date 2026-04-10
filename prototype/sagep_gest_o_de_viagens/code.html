@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .JetBrains_Mono_for_data { font-family: 'JetBrains Mono', monospace; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #0c1321; }
+        ::-webkit-scrollbar-thumb { background: #2e3543; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #434655; }
+        body { font-family: 'Inter', sans-serif; background-color: #0c1321; color: #dce2f5; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#2e3543",
+                        "background": "#0c1321",
+                        "on-secondary-container": "#6d5000",
+                        "error-container": "#93000a",
+                        "on-primary": "#002a78",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "inverse-surface": "#dce2f5",
+                        "inverse-on-surface": "#29303f",
+                        "on-background": "#dce2f5",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#434655",
+                        "on-surface-variant": "#c3c6d7",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#b4c5ff",
+                        "surface-bright": "#323948",
+                        "surface-container-highest": "#2e3543",
+                        "on-surface": "#dce2f5",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#070e1b",
+                        "surface-container-low": "#141c29",
+                        "on-tertiary-container": "#c1ffc5",
+                        "surface-container": "#19202d",
+                        "tertiary-fixed": "#6bff8f",
+                        "surface-container-high": "#232a38",
+                        "secondary-fixed": "#ffdfa0",
+                        "surface": "#0c1321",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#fbbc00",
+                        "on-secondary-fixed": "#261a00",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-primary": "#0053db",
+                        "primary": "#b4c5ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#8d90a0",
+                        "on-secondary-fixed-variant": "#5c4300",
+                        "tertiary-container": "#007e37",
+                        "on-tertiary": "#003915",
+                        "tertiary": "#4ae176",
+                        "on-error": "#690005",
+                        "secondary-container": "#ffbf00",
+                        "secondary": "#ffe2ab",
+                        "on-secondary": "#402d00",
+                        "surface-dim": "#0c1321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="overflow-x-hidden">
+<!-- SideNavBar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#0c1321] flex flex-col border-r border-white/5 font-['Inter'] font-medium tracking-tight JetBrains_Mono_for_data shadow-[20px_0_50px_rgba(0,0,0,0.3)] z-50 hidden md:flex">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<div>
+<h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">SAGEP</h1>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">Operational Command</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<span>Personnel</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-blue-400 border-l-4 border-blue-600 bg-blue-600/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+<span>Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">security</span>
+<span>Tactical Units</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+<span>Incident Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-1 border-t border-white/5">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar Anchor -->
+<header class="fixed top-0 right-0 w-full md:w-[calc(100%-16rem)] h-16 bg-[#19202d]/40 backdrop-blur-xl z-40 flex justify-between items-center px-8 font-['Inter'] text-sm">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-400 transition-colors">search</span>
+<input class="bg-surface-container-lowest border-none rounded-full pl-10 pr-4 py-2 w-64 text-xs focus:ring-1 focus:ring-primary/50 transition-all" placeholder="Search mission IDs or personnel..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 text-slate-300 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 text-slate-300 transition-colors">
+<span class="material-symbols-outlined">g_translate</span>
+</button>
+<div class="h-8 w-[1px] bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-white leading-none">Cmdr. Silva</p>
+<p class="text-[10px] text-blue-400 font-mono">ID: 4429-X</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-white/10 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a professional military commander in tactical gear, sharp focus, cinematic lighting, neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB81b3KJuVL_kMhzcYWJ4_iCOsj6SXOo-8R9RL5YhXxwI6F-KKIFGeGtMusLGugMnRtApEFCtf7uwZBGGIY8xoJXTDpHEBkO-qG7KBmtZoow9I1Jua6U9Ry_ikMIrAFxfnDOhL36AdyCsdYWOlV-wlvPVo0cvZasKC6zYSCq1R8378tBDte_WwmclCHrXM_uD69-p9LlkDl5aIRnlQB1g9T3ij3VGqdxErHaS8sL_qO5GcsjSa2l7QhnurJr49u_zyB-YMKzcOpCTBj"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-24 pb-20 md:pb-8 pl-4 pr-4 md:pl-72 md:pr-8 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<nav class="flex items-center gap-2 text-[10px] uppercase tracking-widest text-slate-500 mb-2">
+<span class="hover:text-blue-400 cursor-pointer transition-colors">SAGEP</span>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-blue-400">Gestão de Viagens</span>
+</nav>
+<h2 class="text-3xl font-extrabold text-white tracking-tight">Registro Operacional de Viagens</h2>
+<p class="text-slate-400 mt-1 max-w-xl">Monitoramento e alocação de pessoal para deslocamentos táticos e administrativos.</p>
+</div>
+<button class="bg-primary-container hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+<span class="material-symbols-outlined">add_location_alt</span>
+                Nova Viagem
+            </button>
+</div>
+<!-- Filters & Stats Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-4 mb-6">
+<div class="lg:col-span-3 bg-surface-container rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6">
+<div class="flex items-center gap-4 w-full md:w-auto">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Filtrar por:</span>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-full bg-blue-600/20 text-blue-400 text-xs font-bold border border-blue-600/30">Todos</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-highest text-slate-400 text-xs font-bold transition-colors">Pendente</button>
+<button class="px-4 py-2 rounded-full bg-surface-container-low hover:bg-surface-container-highest text-slate-400 text-xs font-bold transition-colors">Confirmado</button>
+</div>
+</div>
+<div class="h-8 w-[1px] bg-white/5 hidden md:block"></div>
+<div class="flex-1 w-full md:w-auto">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-sm">filter_list</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary/40" placeholder="Pesquisar por ID, Nome ou Destino..." type="text"/>
+</div>
+</div>
+</div>
+<div class="bg-gradient-to-br from-surface-container to-surface-container-low rounded-2xl p-6 flex flex-col justify-between border-l-4 border-tertiary">
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Taxa de Ocupação</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="text-4xl font-black text-white JetBrains_Mono_for_data tracking-tighter">94%</span>
+<span class="text-tertiary text-xs flex items-center gap-1 font-bold">
+<span class="material-symbols-outlined text-sm">trending_up</span> 2.1%
+                    </span>
+</div>
+</div>
+</div>
+<!-- Tactical Table Section -->
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-2xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">Officer ID</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">Nome</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">Data de Missão</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">Destino Operacional</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">Status</th>
+<th class="px-6 py-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold text-center">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-4">
+<span class="JetBrains_Mono_for_data text-blue-400 font-medium">#SAGE-7721</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close up headshot of a focused professional female law enforcement officer in a dark blue uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkfk8-VJ3zPfOlOK8eZWYruSfuHArWQ77A1nDnTLC2CuuX_5Y3BnviDYlKProHeD1pNBtYpx208bk_D_O6E6Vzlid3xAMvJp3uRnOZxwbUdC3cG4nG3rJX_ivB-GmMhASlvno8kuszTkvZl3u0zINz1sooJkSy7VqQXoQxb1FmmA3IMw3eVN_HfDel76h8GoFKEam7vO7fEw26KA_0ywjFNUwP28DhhI1IsLT3qjEaBeLPbuRHPaAYBEO5hgXep9xtDsblQ8WjEOxW"/>
+</div>
+<span class="font-semibold text-white">Inspetora Elena Vance</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-white JetBrains_Mono_for_data">12 OUT 2023</span>
+<span class="text-[10px] text-slate-500 uppercase">08:45 AM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-lg">location_on</span>
+<span class="text-slate-300">Unidade Setorial Sul - Bloco B</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-md bg-blue-500/10 text-blue-400 text-[10px] font-black uppercase border border-blue-500/20 tracking-widest inline-flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_8px_rgba(96,165,250,0.8)]"></span>
+                                    Pendente
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-white/10 rounded-lg text-slate-400 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-2 hover:bg-error/20 rounded-lg text-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-6 py-4">
+<span class="JetBrains_Mono_for_data text-blue-400 font-medium">#SAGE-0932</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional male officer portrait, stern expression, wearing tactical dark uniform with blurred city background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU28yDI4ERlkIKmitR692KLDslqn-Mqq0GknxmFkOVXVjuWkTw4SHjFXORw8qxYpGw8tNa7a0lSgXVNnEE-ug76-bAP4pcY6gxOd9h1NWW-7euqG_EcSpNZGX5sZGBltEsNOYN8juqo_V_9UM1pk4M8BH1syKawkXWUYNkz7OsNCUCKoM0ofNuUAjr5JqxmIijgKXLMN854K7yBw0AhyOorCwrk4F06UziUaNwy2uVNsA9_9r79bxHfrx6Dh9pVy5k4HLeJ7_zX-1Y"/>
+</div>
+<span class="font-semibold text-white">Sgt. Marcus Holloway</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-white JetBrains_Mono_for_data">11 OUT 2023</span>
+<span class="text-[10px] text-slate-500 uppercase">02:30 PM</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-lg">location_on</span>
+<span class="text-slate-300">Terminal Logístico Central</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-md bg-tertiary/10 text-tertiary text-[10px] font-black uppercase border border-tertiary/20 tracking-widest inline-flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_8px_rgba(74,225,118,0.8)]"></span>
+                                    Confirmado
+                                </span>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-white/10 rounded-lg text-slate-400 transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button class="p-2 hover:bg-error/20 rounded-lg text-error transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low/30 flex justify-between items-center">
+<span class="text-[10px] text-slate-500 uppercase font-bold tracking-widest">Exibindo 2 de 48 registros</span>
+<div class="flex gap-2">
+<button class="p-2 rounded bg-surface-container-low text-slate-500 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded bg-surface-container-highest text-white">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Create Overlay (Simulated Modal Content) -->
+<div class="mt-12 bg-surface-container-highest/30 backdrop-blur-md rounded-2xl border border-white/5 p-8 max-w-5xl mx-auto shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-blue-600"></div>
+<div class="flex items-center justify-between mb-8">
+<div>
+<h3 class="text-xl font-bold text-white">Registro de Nova Missão de Viagem</h3>
+<p class="text-sm text-slate-400">Preencha os dados operacionais para alocação de frota e pessoal.</p>
+</div>
+<div class="bg-blue-600/20 px-4 py-2 rounded-lg">
+<span class="text-xs font-bold text-blue-400 uppercase tracking-widest JetBrains_Mono_for_data">Ref: TX-2023-001</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+<!-- Form Inputs -->
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Tipo de Deslocamento</label>
+<div class="grid grid-cols-2 gap-4">
+<button class="p-4 rounded-xl border-2 border-blue-600 bg-blue-600/10 text-white flex items-center gap-3 transition-all">
+<span class="material-symbols-outlined text-blue-400">shield</span>
+<span class="text-sm font-bold">Operacional</span>
+</button>
+<button class="p-4 rounded-xl border-2 border-white/10 bg-white/5 text-slate-500 flex items-center gap-3 transition-all hover:border-white/20">
+<span class="material-symbols-outlined">corporate_fare</span>
+<span class="text-sm font-bold">Administrativo</span>
+</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Local de Destino</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">near_me</span>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl pl-12 pr-4 py-3 text-sm focus:ring-1 focus:ring-primary/50 text-white" placeholder="Nome da Unidade ou Coordenadas..." type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Data Inicial</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm text-white focus:ring-1 focus:ring-primary/50" type="date"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Prioridade</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-sm text-white focus:ring-1 focus:ring-primary/50">
+<option>Normal</option>
+<option>Alta</option>
+<option>Crítica</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Painel de Sugestão (The AI Logic/HUD feel) -->
+<div class="bg-surface-container rounded-2xl p-6 border border-white/5 relative">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-tertiary">psychology</span>
+<h4 class="text-sm font-bold text-white uppercase tracking-tighter">Painel de Sugestão Inteligente</h4>
+</div>
+<div class="flex items-start gap-4 p-4 bg-surface-container-low rounded-xl border border-tertiary/20">
+<div class="w-12 h-12 rounded-full border-2 border-tertiary p-0.5">
+<img class="w-full h-full object-cover rounded-full" data-alt="professional male officer headshot with glasses, neutral tactical aesthetic, soft lighting, sharp focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoJqKth2-QBWUFScCLBiC2VagOANdVu1YMADKBp7-LG9pYqNTSGu9vefYLjN6dJIwxHWunNACY-HRG9QgqqZKo0dbnBXlORa6whRLDjgM-SsB5-jRPdEWg3G1UU5A8E080_35OKsCvCpFz56vtT1wf6K7PrSWbCxgSUKVa1srmtz3R7j4UMCEqLJJgmois4sIqQgcI-4NjkNbS9dgQWOh9wTQ2aXtoLS16Q2KhYxGzwLNnGajymfPDDrteuN72l_C_0Rsb0VDeBM-O"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-xs font-bold text-white">Oficial Recomendado</p>
+<h5 class="text-lg font-black text-tertiary tracking-tight">Capitão Rodrigo Lima</h5>
+</div>
+<span class="JetBrains_Mono_for_data text-[10px] text-tertiary-fixed-dim bg-tertiary-container/20 px-2 py-0.5 rounded">FIT: 98%</span>
+</div>
+<div class="mt-4 space-y-3">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-tertiary text-xs mt-1">info</span>
+<p class="text-[11px] text-slate-400 leading-relaxed"><strong class="text-slate-200">Por que este oficial?</strong> Baseado no histórico de missões na Zona Sul e certificação ativa em Logística Tática. Disponibilidade confirmada para o período solicitado.</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex-1 h-1 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-tertiary w-[98%]"></div>
+</div>
+<span class="text-[10px] JetBrains_Mono_for_data text-slate-500">LOGÍSTICA</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-tertiary/10 hover:bg-tertiary/20 text-tertiary text-xs font-bold rounded-lg border border-tertiary/30 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                                Aceitar Sugestão
+                            </button>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-white/5">
+<p class="text-[10px] text-slate-500 uppercase tracking-widest mb-3">Outras Opções Disponíveis</p>
+<div class="flex -space-x-2">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container" data-alt="officer portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkedxN76m_jGlwo49kfljTRBTbYw4VQPVRnjTWZhyUdPbFvXgZfJtMt8DX9Y4BRYUXdqVEE0YV_-t5dFBGizG8mHX8P3fmA_3tbhMV2xllYZqqRx9lbuF3sXlRS3HTcjzb1DaIHYBMAPCt7HWkaEK_IBxV-YnMNSITOpaMNunKxHiSxwWA9IqXW-vUTiK1-hwYmddy4oMrXO9xeQOVvarB3kfXLDXOg0K0vOhTwzij_HCsnU3K7ZUVt5YS1oL_Wc8o20vx5gzNaGty"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container" data-alt="officer portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-1DwaDxsUke4yjYG6XZCoZ8AFOJ-hCA8l0w3CLWVncDpZOJ5KWHNNWXLgOYhdyLnDuOTy-Nr_4hfP29RkhDLarDZowhgM6nMdMdrMlk3DUBEfpi19y4cOl6EomkzG59zAjbTQs0q8ncnKgxaMigP5HEQ1QOret7XnuDS-aMwpBCRfcPj1g5SokSFS6o1xCubIsN1HYmckf66z0FN_y6kK9xzLTC5hOB9-NcW_Tk5GRqGuiX5r_-1WVbG3Iq97NdxxdBkkeqYetN8N"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container" data-alt="officer portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI3wHdcF2UXwrgmoSlxfTaer20P-lCNV7hSbP2YYBLe2DxEq3hEFiISMPbmX-twJoXNHWeykdo5OdG0usHW0JpZ_tbCwrlX7pIqEpkmH1CpjZKxSKHIVEcGyT5AFec_51qJdikgDtxrMDkO8hjfTfeYwOGrXrWwg7G558Lz3QjMOpMSdFF49gMrRZ5By1iGnyhbksdWkNv1adZb8arGzPqmxkKh8nVUI0Wf7vsN0lKS-iLWy-FX6mIMwjcRAwjj1CG27w85aJ3Vie_"/>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border-2 border-surface-container flex items-center justify-center text-[10px] font-bold text-slate-400">+12</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-4 mt-12 pt-8 border-t border-white/5">
+<button class="px-8 py-3 rounded-xl font-bold text-slate-400 hover:text-white transition-colors">Cancelar</button>
+<button class="px-10 py-3 rounded-xl font-bold bg-primary-container text-white shadow-xl shadow-blue-600/30">Confirmar Registro</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Anchor -->
+<nav class="md:hidden flex justify-around items-center px-6 pb-4 pt-2 fixed bottom-0 w-full z-50 rounded-t-2xl bg-[#0c1321]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] font-['Inter'] text-[10px] uppercase tracking-widest">
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">grid_view</span>
+            Feed
+        </a>
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-500/10 rounded-xl p-2 active:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">schedule</span>
+            Shifts
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">shield</span>
+            Duty
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:bg-white/5 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1">notifications_active</span>
+            Alerts
+        </a>
+</nav>
+</body></html>

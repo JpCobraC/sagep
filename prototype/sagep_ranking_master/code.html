@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ranking Master | SAGEP Operational Command</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#2e3543",
+                        "background": "#0c1321",
+                        "on-secondary-container": "#6d5000",
+                        "error-container": "#93000a",
+                        "on-primary": "#002a78",
+                        "on-tertiary-fixed-variant": "#005321",
+                        "inverse-surface": "#dce2f5",
+                        "inverse-on-surface": "#29303f",
+                        "on-background": "#dce2f5",
+                        "on-tertiary-fixed": "#002109",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#434655",
+                        "on-surface-variant": "#c3c6d7",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#ffdad6",
+                        "surface-tint": "#b4c5ff",
+                        "surface-bright": "#323948",
+                        "surface-container-highest": "#2e3543",
+                        "on-surface": "#dce2f5",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#070e1b",
+                        "surface-container-low": "#141c29",
+                        "on-tertiary-container": "#c1ffc5",
+                        "surface-container": "#19202d",
+                        "tertiary-fixed": "#6bff8f",
+                        "surface-container-high": "#232a38",
+                        "secondary-fixed": "#ffdfa0",
+                        "surface": "#0c1321",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "secondary-fixed-dim": "#fbbc00",
+                        "on-secondary-fixed": "#261a00",
+                        "tertiary-fixed-dim": "#4ae176",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-primary": "#0053db",
+                        "primary": "#b4c5ff",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline": "#8d90a0",
+                        "on-secondary-fixed-variant": "#5c4300",
+                        "tertiary-container": "#007e37",
+                        "on-tertiary": "#003915",
+                        "tertiary": "#4ae176",
+                        "on-error": "#690005",
+                        "secondary-container": "#ffbf00",
+                        "secondary": "#ffe2ab",
+                        "on-secondary": "#402d00",
+                        "surface-dim": "#0c1321"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift {
+            background-color: #19202d;
+        }
+        .JetBrains_Mono_for_data {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        body {
+            background-color: #0c1321;
+            color: #dce2f5;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="dark overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col h-full border-r border-white/5 bg-[#0c1321] font-['Inter'] font-medium tracking-tight JetBrains_Mono_for_data shadow-[20px_0_50px_rgba(0,0,0,0.3)] z-50">
+<div class="p-6 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" data-icon="security">security</span>
+</div>
+<div>
+<h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">SAGEP</h1>
+<p class="text-[10px] uppercase tracking-widest text-slate-500">Operational Command</p>
+</div>
+</div>
+<nav class="flex-1 mt-6 px-4 space-y-1">
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-blue-400 border-l-4 border-blue-600 bg-blue-600/10 transition-all duration-200 active:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span>Personnel</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span>Schedules</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span>Tactical Units</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span>Incident Logs</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Reports</span>
+</a>
+</nav>
+<div class="mt-auto p-4 space-y-1">
+<button class="w-full bg-primary-container text-white py-3 rounded-xl font-bold text-sm mb-4 flex items-center justify-center space-x-2 shadow-lg shadow-blue-500/20 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+<span>New Deployment</span>
+</button>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#19202d]/40 backdrop-blur-xl flex justify-between items-center px-8 h-16 font-['Inter'] text-sm hidden md:flex">
+<div class="flex items-center bg-surface-container-lowest px-4 py-2 rounded-full border border-white/5 w-96">
+<span class="material-symbols-outlined text-slate-500 text-lg mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-white w-full placeholder:text-slate-500" placeholder="Search officer, ID or unit..." type="text"/>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex space-x-4 border-r border-white/10 pr-6">
+<button class="text-slate-300 hover:text-blue-400 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-300 hover:text-blue-400 transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="g_translate">g_translate</span>
+</button>
+</div>
+<div class="flex items-center space-x-3 pl-2">
+<div class="text-right">
+<p class="text-xs font-bold text-white">Cmdr. Sterling</p>
+<p class="text-[10px] text-blue-400 font-mono">ID: 099-ALPHA</p>
+</div>
+<div class="w-10 h-10 rounded-full border-2 border-blue-500/30 p-0.5">
+<img alt="Commander Avatar" class="w-full h-full rounded-full object-cover" data-alt="professional portrait of a senior male tactical officer with a stern and focused expression in front of a dark backdrop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC1iiMLGkHzTu1JirMW8Z0zLl8beX5wPoMhO9DsJ5_5VDTAo_MGoIXMM6SrGSMyzVP5kpvyE7ImXf3sFejrd2pN4Sw1PFc3YSBx5l80OFpE9FWVLPNfx51pGkKqedxxBUsxL6XlzQgisEehKJWc2avCN9euRscrKqd9842DvIb44NFwG2YYGTaIh3gNG1qjGiVGJrrMOgG8iW9NmVjKJaQ-IXEtge5N4HbwC9uBzLJGPUqCwKt_4QsiDR3CSGxiRU43kNUyq869YIi"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 pt-16 min-h-screen p-8">
+<!-- Dashboard Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-6">
+<div>
+<h2 class="text-4xl font-black tracking-tighter text-white mb-1 uppercase bg-gradient-to-br from-white to-slate-500 bg-clip-text text-transparent">Ranking Master</h2>
+<p class="text-slate-400 font-medium">Meritocracy Analysis &amp; Deployment Efficiency</p>
+</div>
+<div class="flex items-center space-x-3">
+<button class="flex items-center space-x-2 px-5 py-2.5 bg-surface-container-high border border-outline-variant/20 rounded-xl text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="picture_as_pdf">picture_as_pdf</span>
+<span class="text-xs font-bold uppercase tracking-wider">Export PDF</span>
+</button>
+<button class="flex items-center space-x-2 px-5 py-2.5 bg-surface-container-high border border-outline-variant/20 rounded-xl text-on-surface hover:bg-surface-container-highest transition-colors active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="csv">csv</span>
+<span class="text-xs font-bold uppercase tracking-wider">Export CSV</span>
+</button>
+<button class="flex items-center space-x-2 px-5 py-2.5 bg-primary-container rounded-xl text-white font-bold hover:brightness-110 active:scale-95">
+<span class="material-symbols-outlined text-sm" data-icon="refresh">refresh</span>
+<span class="text-xs uppercase tracking-wider">Sync Data</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Stats & Charts -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 mb-8">
+<!-- Comparison Chart Area -->
+<div class="md:col-span-8 bg-surface-container rounded-3xl p-8 relative overflow-hidden">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h3 class="text-lg font-bold text-white">Viagens vs Sobreavisos</h3>
+<p class="text-xs text-slate-500 font-mono">OPERATIONAL RATIO - LAST 30 DAYS</p>
+</div>
+<div class="flex items-center space-x-4">
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-full bg-blue-500"></span>
+<span class="text-[10px] font-mono text-slate-400 uppercase">Viagens</span>
+</div>
+<div class="flex items-center space-x-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="text-[10px] font-mono text-slate-400 uppercase">Sobreavisos</span>
+</div>
+</div>
+</div>
+<!-- Custom Visual Chart Representation -->
+<div class="h-64 flex items-end justify-between px-4 space-x-4">
+<!-- Column 1 -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full flex items-end justify-center space-x-1 h-full">
+<div class="w-1/3 bg-blue-600/20 rounded-t-lg group-hover:bg-blue-600/40 transition-colors" style="height: 45%;"></div>
+<div class="w-1/3 bg-tertiary/20 rounded-t-lg group-hover:bg-tertiary/40 transition-colors" style="height: 60%;"></div>
+</div>
+<span class="mt-4 text-[10px] font-mono text-slate-600">WK-01</span>
+</div>
+<!-- Column 2 -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full flex items-end justify-center space-x-1 h-full">
+<div class="w-1/3 bg-blue-600/20 rounded-t-lg group-hover:bg-blue-600/40 transition-colors" style="height: 75%;"></div>
+<div class="w-1/3 bg-tertiary/20 rounded-t-lg group-hover:bg-tertiary/40 transition-colors" style="height: 40%;"></div>
+</div>
+<span class="mt-4 text-[10px] font-mono text-slate-600">WK-02</span>
+</div>
+<!-- Column 3 -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full flex items-end justify-center space-x-1 h-full relative">
+<div class="w-1/3 bg-blue-600/80 rounded-t-lg shadow-[0_0_20px_rgba(37,99,235,0.3)]" style="height: 90%;"></div>
+<div class="w-1/3 bg-tertiary/80 rounded-t-lg shadow-[0_0_20px_rgba(74,225,118,0.3)]" style="height: 85%;"></div>
+</div>
+<span class="mt-4 text-[10px] font-mono text-slate-300">CURR</span>
+</div>
+<!-- Column 4 -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full flex items-end justify-center space-x-1 h-full">
+<div class="w-1/3 bg-blue-600/20 rounded-t-lg group-hover:bg-blue-600/40 transition-colors" style="height: 60%;"></div>
+<div class="w-1/3 bg-tertiary/20 rounded-t-lg group-hover:bg-tertiary/40 transition-colors" style="height: 55%;"></div>
+</div>
+<span class="mt-4 text-[10px] font-mono text-slate-600">WK-04</span>
+</div>
+<!-- Column 5 -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="w-full flex items-end justify-center space-x-1 h-full">
+<div class="w-1/3 bg-blue-600/20 rounded-t-lg group-hover:bg-blue-600/40 transition-colors" style="height: 40%;"></div>
+<div class="w-1/3 bg-tertiary/20 rounded-t-lg group-hover:bg-tertiary/40 transition-colors" style="height: 30%;"></div>
+</div>
+<span class="mt-4 text-[10px] font-mono text-slate-600">WK-05</span>
+</div>
+</div>
+</div>
+<!-- Top Meritocracy Summary -->
+<div class="md:col-span-4 flex flex-col space-y-6">
+<div class="flex-1 bg-gradient-to-br from-blue-600 to-blue-800 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<p class="text-xs font-mono text-blue-200 uppercase tracking-widest mb-1">Global Leader</p>
+<h4 class="text-2xl font-black text-white leading-none mb-4">Sgt. Elias Thorne</h4>
+<div class="flex items-center space-x-4">
+<div class="text-center">
+<p class="text-[10px] text-blue-200 uppercase font-bold">Points</p>
+<p class="text-2xl font-mono font-bold text-white">4,892</p>
+</div>
+<div class="w-px h-10 bg-white/20"></div>
+<div class="text-center">
+<p class="text-[10px] text-blue-200 uppercase font-bold">Efficiency</p>
+<p class="text-2xl font-mono font-bold text-white">98.4%</p>
+</div>
+</div>
+</div>
+<div class="mt-6">
+<span class="px-3 py-1 bg-white/20 rounded-full text-[10px] font-bold text-white uppercase">Operational Tier: Platinum</span>
+</div>
+</div>
+<div class="flex-1 bg-surface-container rounded-3xl p-6 border border-white/5 flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary" data-icon="trending_up">trending_up</span>
+<span class="text-[10px] font-mono text-tertiary">+12% vs last month</span>
+</div>
+<div>
+<h5 class="text-sm font-bold text-slate-400 uppercase tracking-tight">Average Meritocracy</h5>
+<p class="text-3xl font-mono font-bold text-white">3,104 <span class="text-sm text-slate-500">pts</span></p>
+</div>
+</div>
+</div>
+</div>
+<!-- Full Officer List Table Container -->
+<div class="bg-surface-container rounded-3xl overflow-hidden shadow-2xl border border-white/5">
+<div class="p-6 border-b border-white/5 flex justify-between items-center bg-surface-container-high/30">
+<h3 class="text-lg font-bold text-white">Full Personnel Meritocracy Ranking</h3>
+<div class="flex items-center space-x-4">
+<div class="flex bg-surface-container-lowest rounded-lg p-1">
+<button class="px-3 py-1.5 bg-surface-container-highest rounded-md text-xs font-bold text-white">Active</button>
+<button class="px-3 py-1.5 text-xs font-bold text-slate-500">Standby</button>
+<button class="px-3 py-1.5 text-xs font-bold text-slate-500">On Leave</button>
+</div>
+<button class="material-symbols-outlined text-slate-400 hover:text-white" data-icon="filter_list">filter_list</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-8 py-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest">Rank</th>
+<th class="px-8 py-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest">Officer Identity</th>
+<th class="px-8 py-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest">Unit</th>
+<th class="px-8 py-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest">Viagens</th>
+<th class="px-8 py-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest">Sobreavisos</th>
+<th class="px-8 py-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest text-right">Merit Points</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-white/5">
+<!-- Rank 1 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-5">
+<div class="w-8 h-8 rounded-lg bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center">
+<span class="text-yellow-500 font-mono font-bold">01</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-primary/20 p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="close-up portrait of a determined male security professional in tactical gear with a neutral expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCarsOu8a8ELN0gXZJMRPwgmR6RiqXsI3GgGp2lktcvls65A-oloX2AIiOtvhh52_LlM3LPYUCeiLaMCLt8UQS4IAZlS67VMyykPOHn4msUTpvHMMuioXITeZp_HQFmYJKbsWDxHdcHorzCsuLFMCpyNuPu-YCQFl2f3Qev5BylIYpsRS0jwuF4E7U7t0UwHb2ePipRO3WjmOEiToeL9_gvBVY2EENZdctJZk3FPzUpfDa8tofqqeYd2gKqnJFRdUgD7fziXMzSsIli"/>
+</div>
+<div>
+<p class="font-bold text-white text-sm">Elias Thorne</p>
+<p class="text-xs text-slate-500 font-mono">SGT-992-ALPHA</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-mono text-blue-400">TAC-ALPHA</span>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">42</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">12</td>
+<td class="px-8 py-5 text-right">
+<span class="font-mono font-bold text-lg text-primary">4,892</span>
+</td>
+</tr>
+<!-- Rank 2 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-5">
+<div class="w-8 h-8 rounded-lg bg-slate-500/10 border border-slate-500/30 flex items-center justify-center">
+<span class="text-slate-400 font-mono font-bold">02</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-primary/20 p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="professional headshot of a confident female tactical officer with short hair and an authoritative look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0B_5OIItrtiGGzoEYNfsXCMzNiuttDGLUu8i7oJzNtcXJ6IrUfmNySYnQq5SprOlVugThQFkjS6zOJyJBeFSrbK6vjfLzPAglgrK28DDReF8DMj20YjTWF-z5LsR5Gp-DEJklyc8wgRTDMoDgGYTOyhgNpeikwi1x08erRlxUqASpa5VMIYcL1ev3VVFTteBIJlY6Zh3ZOaXRbXFVTRQ5Jn4ID4aGbWTQNQrAIdB9L8wsZ-JZbK8YgZ3fsmV8mZb9-MwoCV5DVFTL"/>
+</div>
+<div>
+<p class="font-bold text-white text-sm">Sarah Jenkins</p>
+<p class="text-xs text-slate-500 font-mono">CPL-441-BETA</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-mono text-blue-400">INTEL-01</span>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">38</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">18</td>
+<td class="px-8 py-5 text-right">
+<span class="font-mono font-bold text-lg text-primary">4,650</span>
+</td>
+</tr>
+<!-- Rank 3 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-5">
+<div class="w-8 h-8 rounded-lg bg-orange-800/10 border border-orange-800/30 flex items-center justify-center">
+<span class="text-orange-700 font-mono font-bold">03</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-primary/20 p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="close-up portrait of a mature male security officer with graying hair and glasses in a dark office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2VfF-hmDUERVPN3lnlOYJx1Q4_Z2oA5zc-X076zqfc7X9SEIU4cwtrElx3EQWYQZJSRQnMBeQCTlM5fAg8KqRWrwGzNJncj09LvCuNQeV783Ul8orIW87oAUkrynNu6hHIgdsh77UHF6cpIglH7-Ew_KxxTFl2h8Vr963t233GA-siPy5vL0TcRYOfncHPFH6mgn3s6cJDTcDFuJJG0JFdQjieqNsvLVg8mDY0CiftCDOG0mLZlAiYfA_xBNH_iqly-KNNBJs2AAw"/>
+</div>
+<div>
+<p class="font-bold text-white text-sm">Marcus Vane</p>
+<p class="text-xs text-slate-500 font-mono">LT-102-DELTA</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-mono text-blue-400">TAC-ALPHA</span>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">35</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">15</td>
+<td class="px-8 py-5 text-right">
+<span class="font-mono font-bold text-lg text-primary">4,201</span>
+</td>
+</tr>
+<!-- Rank 4 -->
+<tr class="hover:bg-white/[0.02] transition-colors group">
+<td class="px-8 py-5">
+<div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+<span class="text-slate-500 font-mono font-bold">04</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center space-x-3">
+<div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-transparent p-0.5">
+<img class="w-full h-full rounded-full object-cover" data-alt="professional studio portrait of a young male with sharp features and a serious gaze wearing a dark uniform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQh7j9kiQhp8f_j_W9jBWrcDmyZNZrRqcmpq98aZdy55_d8rx13fUKsT7WaXwyd-7B4p4dICm_FpyPbGmNxia9FzuCF60-qMxPqkX_bDMPPTKYKXhDHbfqzZAx3nF1PnE73cx514_SGcS9tUSs0JxBzs6nTZIRWF1APZBaveRHpxrmou-lw2vZY20yC0smh2_5r-kA00zp6oHXgeTMy9gK4g7SsbOK7kYzziqnPg8oSg8rhitZXNiagnx2aomwHh5R0cSGQKhR7CyS"/>
+</div>
+<div>
+<p class="font-bold text-white text-sm">Leo Kosta</p>
+<p class="text-xs text-slate-500 font-mono">PVT-887-GAMMA</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-2 py-1 bg-surface-container-highest rounded text-[10px] font-mono text-blue-400">PATROL-B</span>
+</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">31</td>
+<td class="px-8 py-5 font-mono text-sm text-slate-300">22</td>
+<td class="px-8 py-5 text-right">
+<span class="font-mono font-bold text-lg text-primary">3,980</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-high/20 border-t border-white/5 flex justify-between items-center">
+<p class="text-xs text-slate-500 font-mono">Showing 4 of 128 registered officers</p>
+<div class="flex space-x-2">
+<button class="p-2 bg-surface-container-highest rounded-lg text-slate-400 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="p-2 bg-primary-container rounded-lg text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-2xl bg-[#0c1321]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)] flex justify-around items-center px-6 pb-4 pt-2 font-['Inter'] text-[10px] uppercase tracking-widest">
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="grid_view">grid_view</span>
+<span>Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-500/10 rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="schedule">schedule</span>
+<span>Shifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shield">shield</span>
+<span>Duty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="notifications_active">notifications_active</span>
+<span>Alerts</span>
+</a>
+</nav>
+</body></html>

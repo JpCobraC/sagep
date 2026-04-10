@@ -1,0 +1,17 @@
+node_modules
+.next
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+README.md
+LICENSE
+.env
+.env.local
+.env.production
+.env.development
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.DS_Store

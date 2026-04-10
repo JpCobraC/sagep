@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#2e3543",
+                    "background": "#0c1321",
+                    "on-secondary-container": "#6d5000",
+                    "error-container": "#93000a",
+                    "on-primary": "#002a78",
+                    "on-tertiary-fixed-variant": "#005321",
+                    "inverse-surface": "#dce2f5",
+                    "inverse-on-surface": "#29303f",
+                    "on-background": "#dce2f5",
+                    "on-tertiary-fixed": "#002109",
+                    "on-primary-container": "#eeefff",
+                    "outline-variant": "#434655",
+                    "on-surface-variant": "#c3c6d7",
+                    "primary-container": "#2563eb",
+                    "on-error-container": "#ffdad6",
+                    "surface-tint": "#b4c5ff",
+                    "surface-bright": "#323948",
+                    "surface-container-highest": "#2e3543",
+                    "on-surface": "#dce2f5",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#070e1b",
+                    "surface-container-low": "#141c29",
+                    "on-tertiary-container": "#c1ffc5",
+                    "surface-container": "#19202d",
+                    "tertiary-fixed": "#6bff8f",
+                    "surface-container-high": "#232a38",
+                    "secondary-fixed": "#ffdfa0",
+                    "surface": "#0c1321",
+                    "primary-fixed": "#dbe1ff",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "secondary-fixed-dim": "#fbbc00",
+                    "on-secondary-fixed": "#261a00",
+                    "tertiary-fixed-dim": "#4ae176",
+                    "on-primary-fixed": "#00174b",
+                    "inverse-primary": "#0053db",
+                    "primary": "#b4c5ff",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "outline": "#8d90a0",
+                    "on-secondary-fixed-variant": "#5c4300",
+                    "tertiary-container": "#007e37",
+                    "on-tertiary": "#003915",
+                    "tertiary": "#4ae176",
+                    "on-error": "#690005",
+                    "secondary-container": "#ffbf00",
+                    "secondary": "#ffe2ab",
+                    "on-secondary": "#402d00",
+                    "surface-dim": "#0c1321"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"],
+                    "mono": ["JetBrains Mono"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .JetBrains_Mono_for_data { font-family: 'JetBrains Mono', monospace; }
+        .tonal-shift { transition: background-color 0.3s ease; }
+        body { background-color: #0c1321; color: #dce2f5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #070e1b; }
+        ::-webkit-scrollbar-thumb { background: #2e3543; border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased">
+<!-- SideNavBar Shell -->
+<nav class="hidden md:flex flex-col h-full border-r border-white/5 bg-[#0c1321] h-screen w-64 fixed left-0 top-0 shadow-[20px_0_50px_rgba(0,0,0,0.3)] z-50">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-10">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden shadow-lg shadow-blue-500/20">
+<img alt="Agency Command Seal" class="w-8 h-8" data-alt="High-resolution circular crest of a tactical security agency featuring a stylized shield and golden eagle wings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG7ETRkKExl7G6550Eygn1qqWrEdOLdBtEAGP7t7FycZSnGNVROtcwqZ7WLwecVv1n-Ihlm_sBw_K1wyld8m-FwJkx9LOZewTA2LD5MelSSIlZV6tHtB0ddm0LnLUMnLG84tHxPQmXRhbAl7wtLRfu0ZE2lpI4Q-rb0NHnGynygj6KaxwstGOvuZ2AjKo9PsSDP3U1aMLG9yINYMDSzlksWCFRMfNdJJrH-m7o1YaKbz6yDtqyY-qDX4VKMxekdhcMznrevD6L2cFk"/>
+</div>
+<div>
+<h1 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">SAGEP</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold">Operational Command</p>
+</div>
+</div>
+<div class="space-y-1">
+<!-- Navigation Items -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-medium tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-medium tracking-tight">Personnel</span>
+</a>
+<!-- ACTIVE: Schedules -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-blue-400 border-l-4 border-blue-600 bg-blue-600/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="font-medium tracking-tight">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">security</span>
+<span class="font-medium tracking-tight">Tactical Units</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-medium tracking-tight">Incident Logs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-[#19202d] transition-all duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-medium tracking-tight">Reports</span>
+</a>
+</div>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<button class="w-full py-3 bg-primary-container text-white rounded-xl font-bold text-sm shadow-lg shadow-blue-500/20 active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Deployment
+            </button>
+<div class="pt-4 border-t border-white/5 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-xs">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-400 hover:text-slate-200 transition-colors" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="text-xs">Logout</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-[#19202d]/40 backdrop-blur-xl hidden md:flex justify-between items-center px-8 h-16">
+<div class="flex items-center gap-4 w-1/2">
+<div class="relative w-full max-w-md group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-blue-400 transition-colors">search</span>
+<input class="w-full bg-[#070e1b] border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-1 focus:ring-blue-500/50 text-slate-200 placeholder-slate-600" placeholder="Search operational schedules..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-slate-300 hover:text-blue-400 transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary-container rounded-full shadow-[0_0_8px_#ffbf00]"></span>
+</button>
+<button class="text-slate-300 hover:text-blue-400 transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined">g_translate</span>
+</button>
+<div class="flex items-center gap-3 border-l border-white/10 pl-6 ml-2">
+<div class="text-right">
+<p class="text-xs font-bold text-white leading-none">Cmdr. Silva</p>
+<p class="text-[10px] text-slate-500">Alpha Sector</p>
+</div>
+<span class="material-symbols-outlined text-slate-300 text-3xl">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="md:ml-64 pt-16 pb-20 md:pb-8 min-h-screen px-4 md:px-8">
+<div class="max-w-[1600px] mx-auto pt-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-white flex items-center gap-3">
+                        Gestão de Sobreaviso
+                        <span class="text-xs font-mono px-2 py-1 bg-secondary-container/10 text-secondary-container border border-secondary-container/20 rounded uppercase tracking-widest">Live Operations</span>
+</h2>
+<p class="text-slate-400 mt-1 max-w-lg">Monitoring on-call rotations and tactical standby status for the current operational cycle.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container rounded-xl p-1 p-2">
+<button class="px-4 py-2 text-xs font-bold bg-primary-container text-white rounded-lg shadow-lg">Month</button>
+<button class="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition-colors">Week</button>
+<button class="px-4 py-2 text-xs font-bold text-slate-400 hover:text-white transition-colors">Day</button>
+</div>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Main Calendar (9 cols) -->
+<div class="lg:col-span-8 space-y-6">
+<div class="bg-surface-container rounded-2xl overflow-hidden shadow-2xl border-white/5">
+<!-- Calendar Header -->
+<div class="flex items-center justify-between p-6 bg-surface-container-high">
+<div class="flex items-center gap-4">
+<h3 class="text-xl font-bold font-mono tracking-tighter">OCTOBER 2023</h3>
+<div class="flex gap-1">
+<button class="p-1 hover:bg-white/5 rounded"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 hover:bg-white/5 rounded"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+<!-- Legend chips -->
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]"></span>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Tactical</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container shadow-[0_0_8px_#ffbf00]"></span>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Alert</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed shadow-[0_0_8px_#6bff8f]"></span>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Support</span>
+</div>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-7 border-t border-white/5">
+<!-- Days of week -->
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest border-r border-white/5">Sun</div>
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest border-r border-white/5">Mon</div>
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest border-r border-white/5">Tue</div>
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest border-r border-white/5">Wed</div>
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest border-r border-white/5">Thu</div>
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest border-r border-white/5">Fri</div>
+<div class="p-3 text-center text-[10px] font-black text-slate-600 uppercase tracking-widest">Sat</div>
+<!-- Calendar Cells (Simplified for Design) -->
+<!-- Row 1 -->
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">24</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">25</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">26</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">27</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">28</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">29</div>
+<div class="min-h-[120px] p-2 border-t border-white/5 bg-surface-container-lowest/50 text-slate-700 font-mono text-sm">30</div>
+<!-- Row 2 (Active Month) -->
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">01</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">
+                                02
+                                <div class="mt-2 space-y-1">
+<div class="text-[9px] bg-blue-500/20 text-blue-400 p-1 rounded border-l-2 border-blue-500 font-bold tracking-tight">Alpha Team [4]</div>
+</div>
+</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">03</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">04</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">
+                                05
+                                <div class="mt-2 space-y-1">
+<div class="text-[9px] bg-secondary-container/20 text-secondary-container p-1 rounded border-l-2 border-secondary-container font-bold tracking-tight">High Alert R.</div>
+</div>
+</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">06</div>
+<div class="min-h-[120px] p-2 border-t border-white/5 font-mono text-sm">07</div>
+<!-- Row 3 -->
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">08</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">09</div>
+<!-- TODAY -->
+<div class="min-h-[120px] p-2 border-t border-r border-blue-500/30 bg-blue-500/5 font-mono text-sm relative">
+<span class="text-blue-400 font-bold">10</span>
+<div class="absolute top-2 right-2 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse"></div>
+<div class="mt-2 space-y-1">
+<div class="text-[9px] bg-blue-500/20 text-blue-400 p-1 rounded border-l-2 border-blue-500 font-bold tracking-tight">Rapid Response</div>
+<div class="text-[9px] bg-tertiary-fixed/20 text-tertiary-fixed p-1 rounded border-l-2 border-tertiary-fixed font-bold tracking-tight">Logistics Sub.</div>
+</div>
+</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">11</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">12</div>
+<div class="min-h-[120px] p-2 border-t border-r border-white/5 font-mono text-sm">13</div>
+<div class="min-h-[120px] p-2 border-t border-white/5 font-mono text-sm">14</div>
+</div>
+</div>
+</div>
+<!-- Officers Sidebar (4 cols) -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container rounded-2xl p-6 shadow-2xl border border-white/5 relative overflow-hidden">
+<!-- Glass effect header -->
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-bold text-white tracking-tight">Today's Response Units</h4>
+<span class="text-[10px] font-mono text-secondary-container bg-secondary-container/10 px-2 py-0.5 rounded">OCT 10</span>
+</div>
+<!-- Officer List -->
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="group bg-surface-container-low rounded-xl p-4 border-l-4 border-blue-600 transition-all hover:bg-surface-container-high">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-variant overflow-hidden">
+<img alt="Officer Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a male tactical officer in gear, dark background, cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWMPssSFadn8g0b_7IJYkM9bCUsoqGTT_WO2WS4P5k_62Kc5tpMZE_c1PvCAOzaTih8U9t0jcEKx2Y-XL_KQ6r3Fwzgu3Ft7aQe27Sf8zxux6QkPrbYcCNHSbIxO15t8QFY5ZNI6cRl7RUy8yX-fgUD4SU51IR-JzNYO3aHSdBDKLWCHojI3ZkXZP_HIKnYsnRpmcitaRB-Qo3F9K0RfYMLZBPuzw62T61BROI_N_UWevXsWKCPVmLVj0Uxsx3R8QGPyoxEF81R6fp"/>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Sgt. Marcus Viana</p>
+<p class="text-[10px] font-mono text-slate-500">UNIT: TACT-01</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-blue-400 font-bold bg-blue-500/10 px-2 py-0.5 rounded uppercase">On Call</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2 bg-secondary-container/10 text-secondary-container text-[10px] font-black uppercase tracking-widest rounded-lg border border-secondary-container/20 hover:bg-secondary-container hover:text-on-secondary-container transition-all active:scale-95">
+                                        Confirmar Recebimento
+                                    </button>
+<button class="p-2 bg-surface-container-highest rounded-lg text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-sm">phone</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group bg-surface-container-low rounded-xl p-4 border-l-4 border-blue-600 transition-all hover:bg-surface-container-high opacity-80">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-variant overflow-hidden">
+<img alt="Officer Avatar" class="w-full h-full object-cover" data-alt="Close up portrait of a female officer in blue uniform, professional lighting, soft bokeh background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC935TqgNGau4Ue8hNNNtr2NYPD6n2Sc2hQAp8sBnb885D6kiYkFGIaN75QNuJgfA47e1-uszdY-eiZALpk3m_vP_flrPxOM-wnW6_uFeLrvZ-xzx84kW1drG6ohKOk-8NXXwEdmzftdWV_6ci7iyvR2gq2j-kpZ6S_BzjRt77f1eTl9VsGvU1OahSXhtlOYHCeuDfPo6ql0c6G3J90LW-2mI84filLtsOLIbbNqV9e5uytyUBKCD5FNoKifNhLVViR_aa9wMbB5re6"/>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Cpl. Elena Rossi</p>
+<p class="text-[10px] font-mono text-slate-500">UNIT: TACT-01</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-slate-500 font-bold bg-white/5 px-2 py-0.5 rounded uppercase">Confirmed</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2 bg-blue-500/5 text-slate-500 text-[10px] font-black uppercase tracking-widest rounded-lg border border-white/5 cursor-not-allowed">
+                                        Recebido às 06:45
+                                    </button>
+<button class="p-2 bg-surface-container-highest rounded-lg text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-sm">phone</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group bg-surface-container-low rounded-xl p-4 border-l-4 border-tertiary-fixed transition-all hover:bg-surface-container-high">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-variant overflow-hidden">
+<img alt="Officer Avatar" class="w-full h-full object-cover" data-alt="Male logistics officer with headset, technical office environment, cool tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-qjAl3W_FSJx7EjK3Ak8IY7i7PWh_YIZg7rxjYCoyoMX4dJSGl2fDcGxiwQjJQWgXFxnP3xXRs0hKJ-bXs8zgFT_elZbLGZxn7DnENcdXOgxnLKQhlQsv9SIFHE12ZEPAmcHL8Whs9AKtrc33WiHeW-ZOyIuSyEoRMnGoRD38qw5snOX2v-S23P-z5e8YKCmOTI1RmnXzkYm1uZJGcrAyUNFeR4_JfddMROBBDPUOUIl-Itt4tEXk2kywkNB-moV0XXz35OOvneWI"/>
+</div>
+<div>
+<p class="text-sm font-bold text-white">Lt. Jorge Mendes</p>
+<p class="text-[10px] font-mono text-slate-500">UNIT: SUP-LOG</p>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] text-tertiary-fixed font-bold bg-tertiary-fixed/10 px-2 py-0.5 rounded uppercase">Standby</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="flex-1 py-2 bg-secondary-container/10 text-secondary-container text-[10px] font-black uppercase tracking-widest rounded-lg border border-secondary-container/20 hover:bg-secondary-container hover:text-on-secondary-container transition-all active:scale-95">
+                                        Confirmar Recebimento
+                                    </button>
+<button class="p-2 bg-surface-container-highest rounded-lg text-slate-400 hover:text-white">
+<span class="material-symbols-outlined text-sm">phone</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Stats Footer -->
+<div class="mt-8 pt-6 border-t border-white/5 flex justify-between items-center">
+<div class="text-center">
+<p class="text-2xl font-black text-white font-mono">12</p>
+<p class="text-[9px] text-slate-500 uppercase tracking-tighter">Total Active</p>
+</div>
+<div class="text-center">
+<p class="text-2xl font-black text-secondary-container font-mono">03</p>
+<p class="text-[9px] text-slate-500 uppercase tracking-tighter">Pending Ack</p>
+</div>
+<div class="text-center">
+<p class="text-2xl font-black text-tertiary-fixed font-mono">08</p>
+<p class="text-[9px] text-slate-500 uppercase tracking-tighter">Standby</p>
+</div>
+</div>
+</div>
+<!-- Alert Card -->
+<div class="bg-gradient-to-br from-secondary-container/20 to-orange-900/10 border border-secondary-container/30 rounded-2xl p-6 relative overflow-hidden">
+<div class="absolute -right-4 -top-4 opacity-10">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex items-center gap-2 text-secondary-container mb-2">
+<span class="material-symbols-outlined text-sm">notifications_active</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Operational Alert</span>
+</div>
+<h5 class="text-white font-bold mb-2">Shift Overlap Detected</h5>
+<p class="text-xs text-slate-400 leading-relaxed">System detected a 2-hour overlap in Sector Delta for OCT 12. Manual adjustment recommended before final deployment.</p>
+<button class="mt-4 text-[10px] font-bold text-secondary-container underline underline-offset-4 hover:text-white transition-colors">REVIEW CONFLICTS</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden flex justify-around items-center px-6 pb-4 pt-2 fixed bottom-0 w-full z-50 rounded-t-2xl bg-[#0c1321]/80 backdrop-blur-md border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-400 bg-blue-500/10 rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Shifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">shield</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Duty</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">notifications_active</span>
+<span class="font-['Inter'] text-[10px] uppercase tracking-widest mt-1">Alerts</span>
+</a>
+</nav>
+</body></html>
