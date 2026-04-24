@@ -56,8 +56,8 @@ export interface Viagem {
   data_inicio: Date;
   data_fim: Date;
   nivel: NivelViagem;
-  policial_designado: string;
-  nome_policial?: string; // denormalized for display
+  policiais_designados: string[];
+  nomes_policiais?: string[]; // denormalized for display
   status: StatusEscala;
   pontos: number; // calculated points for this trip
   created_at: Date;
@@ -72,8 +72,8 @@ export interface Sobreaviso {
   data: Date;
   horario_inicio: Date;
   horario_fim: Date;
-  policial_designado: string;
-  nome_policial?: string; // denormalized for display
+  policiais_designados: string[];
+  nomes_policiais?: string[]; // denormalized for display
   status: StatusEscala;
   created_at: Date;
   updated_at: Date;

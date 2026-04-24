@@ -31,7 +31,7 @@ export default function ViagensPage() {
     data_inicio: format(new Date(), "yyyy-MM-dd"),
     data_fim: format(addDays(new Date(), 1), "yyyy-MM-dd"),
     nivel: 1 as NivelViagem,
-    policial_id: "",
+    policiais_ids: [] as string[],
   });
 
   useEffect(() => {
@@ -50,7 +50,8 @@ export default function ViagensPage() {
   const filteredViagens = useMemo(() => {
     return viagens.filter(v => {
       const matchFilter = filter === "Todos" || (filter === "Pendente" && v.status === "pendente") || (filter === "Confirmado" && v.status === "confirmado");
-      const matchSearch = v.destino.toLowerCase().includes(search.toLowerCase()) || v.nome_policial?.toLowerCase().includes(search.toLowerCase());
+      const matchSearch = v.destino.toLowerCase().includes(search.toLowerCase()) || 
+                          v.nomes_policiais?.some(n => n.toLowerCase().includes(search.toLowerCase()));
       return matchFilter && matchSearch;
     });
   }, [viagens, filter, search]);
@@ -69,9 +70,9 @@ export default function ViagensPage() {
   }, [newViagem.data_inicio, newViagem.data_fim, policiais, impedimentos]);
 
   const handleCreate = async () => {
-    if (!newViagem.destino || !newViagem.policial_id) return;
+    if (!newViagem.destino || newViagem.policiais_ids.length === 0) return;
 
-    const policial = policiais.find(p => p.id === newViagem.policial_id);
+    const selectedPoliciais = policiais.filter(p => newViagem.policiais_ids.includes(p.id));
     const pontos = calcularPontosViagem(newViagem.nivel, new Date(newViagem.data_inicio), new Date(newViagem.data_fim));
 
     await createViagem({
@@ -79,8 +80,8 @@ export default function ViagensPage() {
       data_inicio: new Date(newViagem.data_inicio),
       data_fim: new Date(newViagem.data_fim),
       nivel: newViagem.nivel,
-      policial_designado: newViagem.policial_id,
-      nome_policial: policial?.nome || "Policial Desconhecido",
+      policiais_designados: newViagem.policiais_ids,
+      nomes_policiais: selectedPoliciais.map(p => p.nome),
       status: "pendente",
       pontos: pontos,
     });
@@ -91,13 +92,13 @@ export default function ViagensPage() {
       data_inicio: format(new Date(), "yyyy-MM-dd"),
       data_fim: format(addDays(new Date(), 1), "yyyy-MM-dd"),
       nivel: 1 as NivelViagem,
-      policial_id: "",
+      policiais_ids: [],
     });
   };
 
   const handleConfirm = async (viagem: Viagem) => {
-    if (!viagem.policial_designado) return;
-    await confirmViagem(viagem.id, viagem.policial_designado, viagem.pontos);
+    if (!viagem.policiais_designados || viagem.policiais_designados.length === 0) return;
+    await confirmViagem(viagem.id, viagem.policiais_designados, viagem.pontos);
   };
 
   return (
@@ -189,11 +190,15 @@ export default function ViagensPage() {
                     <span className="JetBrains_Mono_for_data text-primary font-medium">#{travel.id.slice(0, 4).toUpperCase()}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center">
-                        <span className="material-symbols-outlined text-slate-500">person</span>
-                      </div>
-                      <span className="font-semibold text-on-surface">{travel.nome_policial}</span>
+                    <div className="flex flex-col gap-1">
+                      {travel.nomes_policiais?.map((nome, i) => (
+                        <div key={i} className="flex items-center gap-2">
+                          <div className="w-5 h-5 rounded bg-surface-container-highest flex items-center justify-center">
+                            <span className="material-symbols-outlined text-[12px] text-slate-500">person</span>
+                          </div>
+                          <span className="font-semibold text-on-surface text-xs">{nome}</span>
+                        </div>
+                      ))}
                     </div>
                   </td>
                   <td className="px-6 py-4">
@@ -316,17 +321,31 @@ export default function ViagensPage() {
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest underline decoration-primary/30">Seleção de Policial</label>
-                  <select 
-                    value={newViagem.policial_id}
-                    onChange={e => setNewViagem({...newViagem, policial_id: e.target.value})}
-                    className="w-full bg-surface-container-lowest border border-white/5 rounded-xl px-4 py-3 text-sm text-white focus:ring-1 focus:ring-primary/50 outline-none"
-                  >
-                    <option value="">Selecione um policial...</option>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest underline decoration-primary/30">Equipe de Policiais (Selecione um ou mais)</label>
+                  <div className="bg-surface-container-lowest border border-white/5 rounded-xl p-4 max-h-48 overflow-y-auto space-y-2">
                     {policiais.filter(p => p.status === 'ativo').map(p => (
-                      <option key={p.id} value={p.id}>{p.nome} ({p.pontos_acumulados_viagem} pts)</option>
+                      <label key={p.id} className="flex items-center gap-3 p-2 hover:bg-white/5 rounded-lg cursor-pointer transition-all">
+                        <input 
+                          type="checkbox"
+                          checked={newViagem.policiais_ids.includes(p.id)}
+                          onChange={e => {
+                            const ids = e.target.checked 
+                              ? [...newViagem.policiais_ids, p.id]
+                              : newViagem.policiais_ids.filter(id => id !== p.id);
+                            setNewViagem({...newViagem, policiais_ids: ids});
+                          }}
+                          className="w-4 h-4 rounded border-white/10 bg-surface-container accent-primary"
+                        />
+                        <div className="flex-1">
+                          <p className="text-xs font-bold text-white">{p.nome}</p>
+                          <p className="text-[9px] text-slate-500 uppercase tracking-widest">{p.pontos_acumulados_viagem} pts acumulados</p>
+                        </div>
+                      </label>
                     ))}
-                  </select>
+                  </div>
+                  {newViagem.policiais_ids.length > 0 && (
+                    <p className="text-[9px] text-primary font-black uppercase tracking-widest italic">{newViagem.policiais_ids.length} oficiais selecionados para a missão</p>
+                  )}
                 </div>
               </div>
 
@@ -355,10 +374,14 @@ export default function ViagensPage() {
                           <strong className="text-tertiary">Justificativa:</strong> {currentSuggestion.reason}
                         </p>
                         <button 
-                          onClick={() => setNewViagem({...newViagem, policial_id: currentSuggestion.policial.id})}
+                          onClick={() => {
+                            if (!newViagem.policiais_ids.includes(currentSuggestion.policial.id)) {
+                              setNewViagem({...newViagem, policiais_ids: [...newViagem.policiais_ids, currentSuggestion.policial.id]});
+                            }
+                          }}
                           className="w-full mt-6 py-3 bg-tertiary text-on-tertiary-container text-xs font-black uppercase tracking-widest rounded-xl hover:shadow-[0_0_20px_rgba(var(--tertiary-rgb),0.4)] transition-all active:scale-95"
                         >
-                          Aplicar Recomendação
+                          Adicionar à Equipe
                         </button>
                       </div>
                     </div>
@@ -385,7 +408,7 @@ export default function ViagensPage() {
               </button>
               <button 
                 onClick={handleCreate}
-                disabled={!newViagem.destino || !newViagem.policial_id}
+                disabled={!newViagem.destino || newViagem.policiais_ids.length === 0}
                 className="px-10 py-3 rounded-xl font-black bg-primary text-on-primary shadow-xl shadow-primary/20 hover:shadow-primary/40 active:scale-95 transition-all uppercase text-xs disabled:opacity-50 disabled:hover:shadow-none"
               >
                 Confirmar Registro Operacional

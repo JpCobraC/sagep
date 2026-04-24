@@ -215,13 +215,13 @@ export async function updateViagem(id: string, data: Partial<Viagem>) {
   return updateDoc(doc(db, 'viagens', id), { ...rest, updated_at: serverTimestamp() });
 }
 
-export async function confirmViagem(viagemId: string, policialId: string, pontos: number) {
+export async function confirmViagem(viagemId: string, policiaisIds: string[], pontos: number) {
   if (!db) {
     mockViagens = mockViagens.map(v =>
       v.id === viagemId ? { ...v, status: 'confirmado' as const, updated_at: new Date() } : v
     );
     mockPoliciais = mockPoliciais.map(p =>
-      p.id === policialId ? { ...p, pontos_acumulados_viagem: p.pontos_acumulados_viagem + pontos, updated_at: new Date() } : p
+      policiaisIds.includes(p.id) ? { ...p, pontos_acumulados_viagem: p.pontos_acumulados_viagem + pontos, updated_at: new Date() } : p
     );
     notifyViagens();
     notifyPoliciais();
@@ -231,10 +231,14 @@ export async function confirmViagem(viagemId: string, policialId: string, pontos
     status: 'confirmado',
     updated_at: serverTimestamp(),
   });
-  await updateDoc(doc(db, 'policiais', policialId), {
-    pontos_acumulados_viagem: increment(pontos),
-    updated_at: serverTimestamp(),
-  });
+  
+  // Update points for all officers in the team
+  for (const pId of policiaisIds) {
+    await updateDoc(doc(db, 'policiais', pId), {
+      pontos_acumulados_viagem: increment(pontos),
+      updated_at: serverTimestamp(),
+    });
+  }
 }
 
 // ============================================================

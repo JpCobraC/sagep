@@ -90,7 +90,7 @@ export function exportViagensPDF(viagens: Viagem[]): void {
     format(new Date(v.data_inicio), 'dd/MM/yyyy'),
     format(new Date(v.data_fim), 'dd/MM/yyyy'),
     String(v.nivel),
-    v.nome_policial || '—',
+    v.nomes_policiais?.join(', ') || '—',
     v.status === 'confirmado' ? 'Confirmado' : 'Pendente',
     String(v.pontos),
   ]);
@@ -123,7 +123,7 @@ export function exportSobreavisoPDF(sobreavisos: Sobreaviso[]): void {
     format(new Date(s.data), 'dd/MM/yyyy'),
     format(new Date(s.horario_inicio), 'HH:mm'),
     format(new Date(s.horario_fim), 'HH:mm'),
-    s.nome_policial || '—',
+    s.nomes_policiais?.join(', ') || '—',
     s.status === 'confirmado' ? 'Confirmado' : 'Pendente',
   ]);
 

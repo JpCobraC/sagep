@@ -13,7 +13,8 @@ import {
   startOfWeek, 
   endOfWeek,
   addMonths,
-  subMonths
+  subMonths,
+  parse
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Policial, Sobreaviso } from "@/types";
@@ -29,6 +30,12 @@ export default function SobreavisoPage() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [sobreavisos, setSobreavisos] = useState<Sobreaviso[]>([]);
   const [policiais, setPoliciais] = useState<Policial[]>([]);
+  const [newSobreaviso, setNewSobreaviso] = useState({
+    data: format(new Date(), "yyyy-MM-dd"),
+    horario_inicio: "18:00",
+    horario_fim: "06:00",
+    policiais_ids: [] as string[],
+  });
   const [view, setView] = useState("Month");
   const [selectedDay, setSelectedDay] = useState<Date | null>(null);
 
@@ -40,6 +47,21 @@ export default function SobreavisoPage() {
       unsubPoliciais();
     };
   }, []);
+
+  const handleCreate = async () => {
+    const start = parse(newSobreaviso.horario_inicio, "HH:mm", new Date());
+    const end = parse(newSobreaviso.horario_fim, "HH:mm", new Date());
+    const selectedPoliciais = policiais.filter(p => newSobreaviso.policiais_ids.includes(p.id));
+    
+    await createSobreaviso({
+      data: new Date(newSobreaviso.data),
+      horario_inicio: start,
+      horario_fim: end,
+      policiais_designados: newSobreaviso.policiais_ids,
+      nomes_policiais: selectedPoliciais.map(p => p.nome),
+      status: "pendente",
+    });
+  };
 
   // Calendar Logic
   const monthStart = startOfMonth(currentDate);
@@ -64,8 +86,11 @@ export default function SobreavisoPage() {
     return sobreavisos.filter(s => isSameDay(new Date(s.data), new Date()));
   }, [sobreavisos]);
 
-  const handleConfirm = async (id: string, policialId: string) => {
-    await confirmSobreaviso(id, policialId);
+  const handleConfirm = async (sobreaviso: Sobreaviso) => {
+    if (!sobreaviso.policiais_designados || sobreaviso.policiais_designados.length === 0) return;
+    for (const pId of sobreaviso.policiais_designados) {
+      await confirmSobreaviso(sobreaviso.id, pId);
+    }
   };
 
   return (
@@ -167,13 +192,20 @@ export default function SobreavisoPage() {
                       {daySobreavisos.map((s) => (
                         <div 
                           key={s.id} 
-                          className={`text-[9px] p-1.5 rounded-lg border-l-2 font-black tracking-tighter truncate ${
-                            s.status === 'confirmado' 
-                              ? 'bg-primary/10 text-primary border-primary' 
-                              : 'bg-white/5 text-slate-400 border-white/20'
-                          }`}
+                          className="flex flex-wrap gap-1"
                         >
-                          {s.nome_policial || "Não atribuído"}
+                          {s.nomes_policiais?.map((nome, i) => (
+                            <span 
+                              key={i}
+                              className={`text-[9px] px-1.5 py-0.5 rounded border font-black tracking-tighter ${
+                                s.status === 'confirmado' 
+                                  ? 'bg-primary/10 text-primary border-primary' 
+                                  : 'bg-white/5 text-slate-400 border-white/20'
+                              }`}
+                            >
+                              {nome}
+                            </span>
+                          ))}
                         </div>
                       ))}
                     </div>
@@ -222,7 +254,9 @@ export default function SobreavisoPage() {
                         <span className="material-symbols-outlined text-2xl">person</span>
                       </div>
                       <div>
-                        <p className="font-bold text-white tracking-tight">{s.nome_policial || "Vago"}</p>
+                        <p className="font-bold text-white tracking-tight leading-tight">
+                          {s.nomes_policiais?.join(' / ') || "Vago"}
+                        </p>
                         <p className="text-[10px] font-mono text-slate-500 uppercase">{format(new Date(s.horario_inicio), "HH:mm")} - {format(new Date(s.horario_fim), "HH:mm")}</p>
                       </div>
                     </div>
@@ -235,7 +269,7 @@ export default function SobreavisoPage() {
                   <div className="mt-5 flex gap-2">
                     {s.status === 'pendente' ? (
                       <button 
-                        onClick={() => handleConfirm(s.id, s.policial_designado)}
+                        onClick={() => handleConfirm(s)}
                         className="flex-1 py-3 bg-secondary-container/10 text-secondary-container text-[10px] font-black uppercase tracking-widest rounded-xl border border-secondary-container/20 hover:bg-secondary-container hover:text-on-secondary-container transition-all active:scale-95"
                       >
                         Validar Presença

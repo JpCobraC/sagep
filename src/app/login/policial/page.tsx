@@ -102,6 +102,16 @@ export default function PolicialLoginPage() {
               )}
             </button>
           </form>
+
+          <div className="pt-4 border-t border-white/5 text-center">
+            <p className="text-[10px] text-slate-500 font-black uppercase tracking-widest mb-2">Novo por aqui?</p>
+            <Link 
+              href="/register/policial" 
+              className="text-xs font-black text-amber-500 hover:text-amber-400 transition-colors uppercase italic"
+            >
+              Ativar Primeiro Acesso Operacional
+            </Link>
+          </div>
         </div>
       </div>
     </div>

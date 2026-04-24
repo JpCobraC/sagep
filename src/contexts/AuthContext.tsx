@@ -83,22 +83,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         };
       }
 
-      // 4. Final Fallback: Default profile
-      return {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email || "",
-        nome: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || "Usuário",
-        role: 'policial'
-      };
+      // 4. If nothing found, this user is not authorized
+      console.warn(`Acesso negado: Perfil não encontrado para o e-mail ${firebaseUser.email}`);
+      await firebaseSignOut(auth);
+      throw new Error("Seu perfil ainda não foi cadastrado pelo administrador. Procure o comando.");
     } catch (err) {
       console.error("Error in resolveUser:", err);
-      // Return a basic profile to avoid blocking the app
-      return {
-        uid: firebaseUser.uid,
-        email: firebaseUser.email || "",
-        nome: firebaseUser.email?.split('@')[0] || "Usuário",
-        role: 'policial'
-      };
+      throw err;
     }
   }
 

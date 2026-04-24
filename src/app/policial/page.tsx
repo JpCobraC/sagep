@@ -53,8 +53,8 @@ export default function PolicialPage() {
   const policialId = user?.policialId || "";
 
   // Filter scales for this officer
-  const myViagens = useMemo(() => viagens.filter(v => v.policial_designado === policialId), [viagens, policialId]);
-  const mySobreavisos = useMemo(() => sobreavisos.filter(s => s.policial_designado === policialId), [sobreavisos, policialId]);
+  const myViagens = useMemo(() => viagens.filter(v => v.policiais_designados?.includes(policialId)), [viagens, policialId]);
+  const mySobreavisos = useMemo(() => sobreavisos.filter(s => s.policiais_designados?.includes(policialId)), [sobreavisos, policialId]);
 
   // Find next upcoming scale (either voyage or on-call)
   const nextScale = useMemo(() => {
@@ -71,7 +71,7 @@ export default function PolicialPage() {
     if (nextScale.type === 'sobreaviso') {
       await confirmSobreaviso(nextScale.id, policialId);
     } else {
-      await confirmViagem(nextScale.id, policialId, (nextScale as Viagem).pontos);
+      await confirmViagem(nextScale.id, (nextScale as Viagem).policiais_designados, (nextScale as Viagem).pontos);
     }
   };
 
@@ -142,8 +142,8 @@ export default function PolicialPage() {
             </button>
           </div>
           <div className="p-2 max-h-60 overflow-y-auto space-y-1">
-            {[...myViagens.filter(v => v.status === 'pendente').map(v => ({ id: v.id, label: `Viagem: ${v.destino}`, type: 'viagem' })),
-              ...mySobreavisos.filter(s => s.status === 'pendente').map(s => ({ id: s.id, label: `Sobreaviso: ${s.nome_policial}`, type: 'sobreaviso' }))
+            {[...myViagens.filter(v => v.status === 'pendente').map(v => ({ id: v.id, label: `Equipe: ${v.nomes_policiais?.join(', ')}`, type: 'viagem' })),
+              ...mySobreavisos.filter(s => s.status === 'pendente').map(s => ({ id: s.id, label: `Sobreaviso: ${s.nomes_policiais?.join(', ')}`, type: 'sobreaviso' }))
             ].map(item => (
               <div key={item.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 transition-all">
                 <span className={`material-symbols-outlined text-sm ${item.type === 'viagem' ? 'text-primary' : 'text-secondary-container'}`}>
