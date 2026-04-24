@@ -28,7 +28,7 @@ export default function EntryPage() {
           <div className="flex items-center justify-center gap-6 mb-2">
             <div className="w-24 h-24 relative animate-in fade-in zoom-in duration-1000">
                <Image 
-                 src="/pf-logo.png" 
+                 src="/pf-logo-v3.png" 
                  alt="Polícia Federal Logo" 
                  fill
                  className="object-contain"
@@ -49,7 +49,7 @@ export default function EntryPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {/* Admin Entry Node */}
-          <Link href="/admin" className="group">
+          <Link href="/login/admin" className="group">
             <div className="relative h-full bg-surface-container/40 backdrop-blur-2xl border border-white/5 p-10 rounded-[2.5rem] transition-all duration-500 hover:border-primary/40 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
                <div className="absolute -right-12 -bottom-12 p-10 opacity-5 transition-all duration-700">
                  <span className="material-symbols-outlined text-[180px] text-white">shield_person</span>
@@ -71,7 +71,7 @@ export default function EntryPage() {
           </Link>
 
           {/* Policial Entry Node */}
-          <Link href="/policial" className="group">
+          <Link href="/login/policial" className="group">
             <div className="relative h-full bg-surface-container/40 backdrop-blur-2xl border border-white/5 p-10 rounded-[2.5rem] transition-all duration-500 hover:border-tertiary/40 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
                <div className="absolute -right-12 -bottom-12 p-10 opacity-5 transition-all duration-700">
                  <span className="material-symbols-outlined text-[180px] text-white">smartphone</span>

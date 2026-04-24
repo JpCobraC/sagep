@@ -4,9 +4,11 @@ export const dynamic = 'force-dynamic';
 
 import { useEffect, useState, useMemo } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { format, isAfter, isSameDay } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Policial, Viagem, Sobreaviso } from "@/types";
+import { useAuth } from "@/contexts/AuthContext";
 import { 
   subscribePoliciais, 
   subscribeViagens, 
@@ -16,19 +18,26 @@ import {
 } from "@/lib/firestore";
 
 export default function PolicialPage() {
+  const { user, loading: authLoading, signOut } = useAuth();
+  const router = useRouter();
   const [currentUser, setCurrentUser] = useState<Policial | null>(null);
-  const [policiais, setPoliciais] = useState<Policial[]>([]);
   const [viagens, setViagens] = useState<Viagem[]>([]);
   const [sobreavisos, setSobreavisos] = useState<Sobreaviso[]>([]);
-  
-  // For demo purposes, we allow switching user in the UI if no "auth" exists
-  const [mockUserId, setMockUserId] = useState<string>("policial_demo_1");
+  const [showNotif, setShowNotif] = useState(false);
+
+  // Redirect if not logged in
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push("/login");
+    }
+  }, [user, authLoading, router]);
 
   useEffect(() => {
+    if (!user?.policialId) return;
+
     const unsubPoliciais = subscribePoliciais((data) => {
-      setPoliciais(data);
-      const user = data.find(p => p.id === mockUserId);
-      if (user) setCurrentUser(user);
+      const p = data.find(p => p.id === user.policialId);
+      if (p) setCurrentUser(p);
     });
 
     const unsubViagens = subscribeViagens(setViagens);
@@ -39,11 +48,13 @@ export default function PolicialPage() {
       unsubViagens();
       unsubSobreaviso();
     };
-  }, [mockUserId]);
+  }, [user?.policialId]);
+
+  const policialId = user?.policialId || "";
 
   // Filter scales for this officer
-  const myViagens = useMemo(() => viagens.filter(v => v.policial_designado === mockUserId), [viagens, mockUserId]);
-  const mySobreavisos = useMemo(() => sobreavisos.filter(s => s.policial_designado === mockUserId), [sobreavisos, mockUserId]);
+  const myViagens = useMemo(() => viagens.filter(v => v.policial_designado === policialId), [viagens, policialId]);
+  const mySobreavisos = useMemo(() => sobreavisos.filter(s => s.policial_designado === policialId), [sobreavisos, policialId]);
 
   // Find next upcoming scale (either voyage or on-call)
   const nextScale = useMemo(() => {
@@ -56,22 +67,40 @@ export default function PolicialPage() {
   }, [myViagens, mySobreavisos]);
 
   const handleConfirm = async () => {
-    if (!nextScale) return;
+    if (!nextScale || !policialId) return;
     if (nextScale.type === 'sobreaviso') {
-      await confirmSobreaviso(nextScale.id, mockUserId);
+      await confirmSobreaviso(nextScale.id, policialId);
     } else {
-      await confirmViagem(nextScale.id, mockUserId, (nextScale as Viagem).pontos);
+      await confirmViagem(nextScale.id, policialId, (nextScale as Viagem).pontos);
     }
   };
+
+  const handleSignOut = async () => {
+    await signOut();
+    window.location.href = "/login";
+  };
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-surface flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-xs font-black uppercase tracking-widest text-slate-500">Autenticando sessão...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) return null; // Wait for redirect
 
   return (
     <div className="bg-surface text-on-surface font-body min-h-screen">
       {/* TopNavBar HUD */}
       <header className="fixed top-0 right-0 w-full z-40 bg-surface-container/40 backdrop-blur-xl flex justify-between items-center px-6 h-16 border-b border-white/5">
-        <div className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <div className="w-10 h-10 relative flex-shrink-0">
              <Image 
-               src="/pf-logo.png" 
+               src="/pf-logo-v3.png" 
                alt="PF Logo" 
                fill 
                className="object-contain"
@@ -79,31 +108,59 @@ export default function PolicialPage() {
              />
           </div>
           <span className="text-lg font-black tracking-tighter text-white uppercase italic">SAGEP</span>
-        </div>
-        
-        {/* User Switcher (for demo/development) */}
-        <select 
-          value={mockUserId}
-          onChange={(e) => setMockUserId(e.target.value)}
-          className="bg-transparent border-none text-[10px] uppercase font-black tracking-widest text-primary cursor-pointer outline-none"
-        >
-          {policiais.map(p => (
-            <option key={p.id} value={p.id} className="bg-surface">{p.nome}</option>
-          ))}
-        </select>
+        </a>
 
         <div className="flex items-center gap-4 text-slate-300">
-          <button className="relative">
+          <button 
+            onClick={() => setShowNotif(!showNotif)} 
+            className="relative"
+          >
             <span className="material-symbols-outlined hover:text-primary transition-colors cursor-pointer">notifications</span>
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-secondary-container rounded-full shadow-[0_0_10px_rgba(var(--secondary-container-rgb),0.5)] border-2 border-surface"></span>
+            {(myViagens.filter(v => v.status === 'pendente').length + mySobreavisos.filter(s => s.status === 'pendente').length) > 0 && (
+              <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] bg-secondary-container rounded-full shadow-[0_0_10px_rgba(var(--secondary-container-rgb),0.5)] border-2 border-surface text-[8px] font-black text-on-secondary flex items-center justify-center">
+                {myViagens.filter(v => v.status === 'pendente').length + mySobreavisos.filter(s => s.status === 'pendente').length}
+              </span>
+            )}
           </button>
-          <div className="w-8 h-8 rounded-full bg-surface-container-highest border border-white/10 flex items-center justify-center">
-            <span className="material-symbols-outlined text-slate-400">person</span>
-          </div>
+          <button 
+            onClick={handleSignOut}
+            className="w-8 h-8 rounded-full bg-surface-container-highest border border-white/10 flex items-center justify-center hover:border-primary/50 transition-all"
+            title="Sair"
+          >
+            <span className="material-symbols-outlined text-slate-400 hover:text-red-400 transition-colors text-lg">logout</span>
+          </button>
         </div>
       </header>
 
-      <main className="pt-24 pb-28 px-6 max-w-lg mx-auto space-y-8">
+      {/* Notifications Panel */}
+      {showNotif && (
+        <div className="fixed top-16 right-4 z-50 w-80 bg-surface-container-highest/95 backdrop-blur-2xl rounded-2xl border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="p-4 border-b border-white/5 flex justify-between items-center">
+            <h4 className="text-xs font-black text-white uppercase tracking-widest">Escalas Pendentes</h4>
+            <button onClick={() => setShowNotif(false)} className="text-slate-500 hover:text-white transition-colors">
+              <span className="material-symbols-outlined text-sm">close</span>
+            </button>
+          </div>
+          <div className="p-2 max-h-60 overflow-y-auto space-y-1">
+            {[...myViagens.filter(v => v.status === 'pendente').map(v => ({ id: v.id, label: `Viagem: ${v.destino}`, type: 'viagem' })),
+              ...mySobreavisos.filter(s => s.status === 'pendente').map(s => ({ id: s.id, label: `Sobreaviso: ${s.nome_policial}`, type: 'sobreaviso' }))
+            ].map(item => (
+              <div key={item.id} className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-white/5 transition-all">
+                <span className={`material-symbols-outlined text-sm ${item.type === 'viagem' ? 'text-primary' : 'text-secondary-container'}`}>
+                  {item.type === 'viagem' ? 'flight_takeoff' : 'event_available'}
+                </span>
+                <span className="text-xs text-slate-300 font-medium truncate">{item.label}</span>
+                <span className="text-[8px] font-black text-secondary-container bg-secondary-container/10 px-1.5 py-0.5 rounded uppercase ml-auto flex-shrink-0">Pendente</span>
+              </div>
+            ))}
+            {myViagens.filter(v => v.status === 'pendente').length + mySobreavisos.filter(s => s.status === 'pendente').length === 0 && (
+              <div className="py-6 text-center text-slate-600 text-xs italic">Nenhuma pendência.</div>
+            )}
+          </div>
+        </div>
+      )}
+
+      <main className="pt-32 pb-36 px-6 max-w-lg mx-auto space-y-8">
         {/* Welcome Section */}
         <section className="space-y-1">
           <p className="text-slate-500 text-xs font-black uppercase tracking-widest italic">Bem vindo, {currentUser?.nome || "Carregando..."}</p>
@@ -174,6 +231,14 @@ export default function PolicialPage() {
               </div>
             )}
           </section>
+        ) : user.role === 'admin' && !user.policialId ? (
+          <div className="bg-blue-500/10 rounded-3xl p-10 text-center space-y-4 border border-blue-500/20 animate-pulse">
+            <span className="material-symbols-outlined text-5xl text-primary">admin_panel_settings</span>
+            <div className="space-y-1">
+              <p className="text-sm font-black uppercase tracking-widest text-white">Modo Administrador</p>
+              <p className="text-xs text-slate-500">Você está visualizando o portal, mas seu usuário não possui um ID de Policial vinculado para exibir escalas.</p>
+            </div>
+          </div>
         ) : (
           <div className="bg-surface-container-low rounded-3xl p-10 text-center space-y-4 border border-white/5 opacity-50">
             <span className="material-symbols-outlined text-5xl">event_busy</span>

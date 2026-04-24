@@ -25,8 +25,16 @@ const NavItem = ({ href, icon, label, active }: NavItemProps) => (
   </Link>
 );
 
+import { useAuth } from "@/contexts/AuthContext";
+
 export default function Sidebar() {
   const pathname = usePathname();
+  const { signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    window.location.href = "/login";
+  };
 
   const navItems = [
     { href: "/admin", icon: "dashboard", label: "Dashboard" },
@@ -39,12 +47,12 @@ export default function Sidebar() {
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-surface border-r border-white/5 flex flex-col z-50 shadow-[20px_0_50px_rgba(0,0,0,0.3)] hidden md:flex">
-      <div className="p-6 flex flex-col gap-1">
+      <div className="p-6 flex flex-col gap-1 h-full">
         {/* Brand */}
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-12 relative flex-shrink-0">
              <Image 
-               src="/pf-logo.png" 
+               src="/pf-logo-v3.png" 
                alt="PF Logo" 
                fill 
                className="object-contain"
@@ -76,10 +84,15 @@ export default function Sidebar() {
 
         {/* Footer Actions */}
         <div className="mt-auto border-t border-white/5 pt-4">
-          <button className="w-full mb-6 py-3 px-4 bg-primary-container text-on-primary-container rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:scale-[1.02] transition-transform active:scale-95">
+          <Link href="/policial" className="w-full mb-3 py-3 px-4 bg-surface-container-highest text-slate-300 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white/10 transition-all border border-white/5">
+            <span className="material-symbols-outlined text-sm">visibility</span>
+            Visão do Policial
+          </Link>
+
+          <Link href="/admin/viagens" className="w-full mb-6 py-3 px-4 bg-primary-container text-on-primary-container rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 hover:scale-[1.02] transition-transform active:scale-95">
             <span className="material-symbols-outlined">add</span>
             Nova Escala
-          </button>
+          </Link>
           
           <Link
             href="/admin/configs"
@@ -89,7 +102,10 @@ export default function Sidebar() {
             <span className="font-sans font-medium tracking-tight">Configurações</span>
           </Link>
           
-          <button className="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-red-400 hover:bg-red-400/5 transition-all duration-200 rounded-xl">
+          <button 
+            onClick={handleSignOut}
+            className="w-full flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-red-400 hover:bg-red-400/5 transition-all duration-200 rounded-xl"
+          >
             <span className="material-symbols-outlined text-lg">logout</span>
             <span className="font-sans font-medium tracking-tight">Logout</span>
           </button>
